@@ -1,7 +1,3 @@
-//
-// Created by Josep Jordana Mitjans on 2019-04-20.
-//
-
 #ifndef PRACTICA_SOA_TYPES_H
 #define PRACTICA_SOA_TYPES_H
 
