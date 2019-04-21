@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    chdir("/Users/jordana/Desktop/Practica_SOA/files"); //TODO: Es perque treballo amb CLion. El woe
+    chdir("/Users/jordana/Desktop/SOA_19_G_7/files"); //TODO: Es perque treballo amb CLion. El woe
 
     int fd = open(argv[2], O_RDONLY); //obrir en mode lectura
     if (fd < 0) {

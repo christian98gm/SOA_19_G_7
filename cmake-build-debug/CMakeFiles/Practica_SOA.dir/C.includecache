@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/jordana/Desktop/SOA_19_G_7/src/ext4.c
-ext4.h
-/Users/jordana/Desktop/SOA_19_G_7/src/ext4.h
-
 /Users/jordana/Desktop/SOA_19_G_7/src/ext4.h
 zconf.h
 -
@@ -18,10 +14,6 @@ types.h
 stdio.h
 -
 
-/Users/jordana/Desktop/SOA_19_G_7/src/fat32.c
-fat32.h
-/Users/jordana/Desktop/SOA_19_G_7/src/fat32.h
-
 /Users/jordana/Desktop/SOA_19_G_7/src/fat32.h
 stdio.h
 -
@@ -29,10 +21,6 @@ zconf.h
 -
 types.h
 /Users/jordana/Desktop/SOA_19_G_7/src/types.h
-
-/Users/jordana/Desktop/SOA_19_G_7/src/filesystemIdentifier.c
-filesystemIdentifier.h
-/Users/jordana/Desktop/SOA_19_G_7/src/filesystemIdentifier.h
 
 /Users/jordana/Desktop/SOA_19_G_7/src/filesystemIdentifier.h
 types.h
