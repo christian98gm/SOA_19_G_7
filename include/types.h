@@ -1,8 +1,11 @@
 #ifndef PRACTICA_SOA_TYPES_H
 #define PRACTICA_SOA_TYPES_H
 
-//Estructura bàsica fat
+//Strcut utils
+#define MAX_NAME 16
+#define MAX_DATE 64
 
+//Basic Fat struct
 typedef struct fat_BS
 {
     unsigned char 		bootjmp[3];
@@ -20,11 +23,9 @@ typedef struct fat_BS
     unsigned int 		hidden_sector_count;
     unsigned int 		total_number_sectors_big;
 
-}__attribute__((packed)) fat_BS_t;//S'afegeix l'atribut de packet per evitar padding
+}__attribute__((packed)) fat_BS_t;//S'afegeix l'atribut de packed per evitar padding
 
-
-//Estructura FAT32
-
+//Fat32 struct
 typedef struct fat_extBS_32
 {
     //extended fat32 stuff
@@ -44,11 +45,7 @@ typedef struct fat_extBS_32
 
 }__attribute__((packed)) fat_extBS_32_t;
 
-/*
- * Structure of the super block
- */
-
-
+//Super block structure
 struct ext_super_block {
 /*00*/unsigned int	s_inodes_count;		/* Inodes count */
     unsigned int	s_blocks_count_lo;	/* Blocks count */
@@ -141,6 +138,41 @@ struct ext_super_block {
     unsigned long	s_snapshot_r_blocks_count; /* reserved blocks for active snapshot's future use */
     unsigned int	s_snapshot_list;	/* inode number of the head of the on-disk snapshot list */
 
-}__attribute__((packed)) ;
+}__attribute__((packed));
+
+//Ext4 inode metadata
+struct InodeInfo {
+	int inodeSize;
+	int totalInodes;
+	int firstInode;
+	int inodesGroup;
+	int freeInodes;
+};
+
+//Ext4 block metadata
+struct BlockInfo {
+	double blockSize;
+	long reservedBlocks;
+	long freeBlocks;
+	long totalBlocks;
+	int firstBlock;
+	short blockGroup;
+	int fragsGroup;
+};
+
+//Ext4 volume metadata
+struct VolumeInfo {
+	char volumeName[MAX_NAME];
+	char lastCheck[MAX_DATE];
+	char lastMount[MAX_DATE];
+	char lastWritten[MAX_DATE];
+};
+
+//Ext4 metadata
+struct Ext4MetaData {
+	struct InodeInfo inode;
+	struct BlockInfo block;
+	struct VolumeInfo volume;
+};
 
 #endif //PRACTICA_SOA_TYPES_H
