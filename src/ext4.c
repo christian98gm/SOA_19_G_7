@@ -20,7 +20,7 @@ void EXT4_showFileSystemInfo(int fd){
 	metadata.inode.inodeSize = sb.s_inode_size;
 	metadata.inode.totalInodes = sb.s_inodes_count;
 	metadata.inode.firstInode = sb.s_first_ino;
-	metadata.inode.inodesGroup = -1;
+	metadata.inode.inodesGroup = -1; //TODO: ext.s_inodes_per_group
 	metadata.inode.freeInodes = sb.s_free_inodes_count;
 	
 	//Get block info
@@ -36,7 +36,7 @@ void EXT4_showFileSystemInfo(int fd){
 	}
 	metadata.block.firstBlock = sb.s_first_data_block;
 	metadata.block.blockGroup = sb.s_block_group_nr;
-	metadata.block.fragsGroup = -1;
+	metadata.block.fragsGroup = -1; //TODO: ext.s_obso_frags_per_group
 	
 	//Get volume info
 	strcpy(metadata.volume.volumeName, sb.s_volume_name);
