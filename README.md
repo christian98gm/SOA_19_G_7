@@ -1,0 +1,1 @@
+La carpeta des d'on es llegiran els volums es 'files'
