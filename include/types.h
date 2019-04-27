@@ -156,7 +156,7 @@ struct BlockInfo {
 	long freeBlocks;
 	long totalBlocks;
 	int firstBlock;
-	short blockGroup;
+	int blockGroup;
 	int fragsGroup;
 };
 

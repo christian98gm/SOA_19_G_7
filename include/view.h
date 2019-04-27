@@ -16,7 +16,7 @@
 //Filesystem metadata messages
 #define FILESYSTEM_INFO "---- Filesystem Information ----\n\nFilesystem: %s\n\n"
 #define INODE_INFO "INODE INFO\nInode Size: %d\nNumber of Inodes: %d\nFirst Inode: %d\nInodes Group: %d\nFree Inodes: %d\n\n"
-#define BLOCK_INFO "BLOCK INFO\nBlock Size: %d\nReserved Blocks: %ld\nFree Blocks: %ld\nTotal Blocks: %ld\nFirst Block: %d\nBlock Group: %hd\nFrags Group: %d\n\n"
+#define BLOCK_INFO "BLOCK INFO\nBlock Size: %d\nReserved Blocks: %ld\nFree Blocks: %ld\nTotal Blocks: %ld\nFirst Block: %d\nBlock Group: %d\nFrags Group: %d\n\n"
 #define VOLUME_INFO "VOLUME INFO\nVolume name: %s\n"
 #define FAT_INFO "System Name: %s\nSector Size: %u\nSectors per Cluster: %u\nReserved Sectors: %u\nNumber of FATs: %u\nMaximum Root Entries: %u\nSectors per FAT: %u\nLabel: %s\n\n"
 
