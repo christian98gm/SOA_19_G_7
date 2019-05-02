@@ -123,6 +123,33 @@ Practica_SOA/fast:
 	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/build
 .PHONY : Practica_SOA/fast
 
+src/argval.o: src/argval.c.o
+
+.PHONY : src/argval.o
+
+# target to build an object file
+src/argval.c.o:
+	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/argval.c.o
+.PHONY : src/argval.c.o
+
+src/argval.i: src/argval.c.i
+
+.PHONY : src/argval.i
+
+# target to preprocess a source file
+src/argval.c.i:
+	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/argval.c.i
+.PHONY : src/argval.c.i
+
+src/argval.s: src/argval.c.s
+
+.PHONY : src/argval.s
+
+# target to generate assembly for a file
+src/argval.c.s:
+	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/argval.c.s
+.PHONY : src/argval.c.s
+
 src/ext4.o: src/ext4.c.o
 
 .PHONY : src/ext4.o
@@ -177,32 +204,32 @@ src/fat32.c.s:
 	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/fat32.c.s
 .PHONY : src/fat32.c.s
 
-src/filesystemIdentifier.o: src/filesystemIdentifier.c.o
+src/identifier.o: src/identifier.c.o
 
-.PHONY : src/filesystemIdentifier.o
+.PHONY : src/identifier.o
 
 # target to build an object file
-src/filesystemIdentifier.c.o:
-	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/filesystemIdentifier.c.o
-.PHONY : src/filesystemIdentifier.c.o
+src/identifier.c.o:
+	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/identifier.c.o
+.PHONY : src/identifier.c.o
 
-src/filesystemIdentifier.i: src/filesystemIdentifier.c.i
+src/identifier.i: src/identifier.c.i
 
-.PHONY : src/filesystemIdentifier.i
+.PHONY : src/identifier.i
 
 # target to preprocess a source file
-src/filesystemIdentifier.c.i:
-	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/filesystemIdentifier.c.i
-.PHONY : src/filesystemIdentifier.c.i
+src/identifier.c.i:
+	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/identifier.c.i
+.PHONY : src/identifier.c.i
 
-src/filesystemIdentifier.s: src/filesystemIdentifier.c.s
+src/identifier.s: src/identifier.c.s
 
-.PHONY : src/filesystemIdentifier.s
+.PHONY : src/identifier.s
 
 # target to generate assembly for a file
-src/filesystemIdentifier.c.s:
-	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/filesystemIdentifier.c.s
-.PHONY : src/filesystemIdentifier.c.s
+src/identifier.c.s:
+	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/identifier.c.s
+.PHONY : src/identifier.c.s
 
 src/main.o: src/main.c.o
 
@@ -231,6 +258,33 @@ src/main.c.s:
 	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/view.o: src/view.c.o
+
+.PHONY : src/view.o
+
+# target to build an object file
+src/view.c.o:
+	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/view.c.o
+.PHONY : src/view.c.o
+
+src/view.i: src/view.c.i
+
+.PHONY : src/view.i
+
+# target to preprocess a source file
+src/view.c.i:
+	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/view.c.i
+.PHONY : src/view.c.i
+
+src/view.s: src/view.c.s
+
+.PHONY : src/view.s
+
+# target to generate assembly for a file
+src/view.c.s:
+	$(MAKE) -f CMakeFiles/Practica_SOA.dir/build.make CMakeFiles/Practica_SOA.dir/src/view.c.s
+.PHONY : src/view.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -240,18 +294,24 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Practica_SOA"
+	@echo "... src/argval.o"
+	@echo "... src/argval.i"
+	@echo "... src/argval.s"
 	@echo "... src/ext4.o"
 	@echo "... src/ext4.i"
 	@echo "... src/ext4.s"
 	@echo "... src/fat32.o"
 	@echo "... src/fat32.i"
 	@echo "... src/fat32.s"
-	@echo "... src/filesystemIdentifier.o"
-	@echo "... src/filesystemIdentifier.i"
-	@echo "... src/filesystemIdentifier.s"
+	@echo "... src/identifier.o"
+	@echo "... src/identifier.i"
+	@echo "... src/identifier.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/view.o"
+	@echo "... src/view.i"
+	@echo "... src/view.s"
 .PHONY : help
 
 

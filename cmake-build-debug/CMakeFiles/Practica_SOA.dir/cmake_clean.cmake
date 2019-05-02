@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Practica_SOA.dir/src/main.c.o"
-  "CMakeFiles/Practica_SOA.dir/src/filesystemIdentifier.c.o"
+  "CMakeFiles/Practica_SOA.dir/src/argval.c.o"
   "CMakeFiles/Practica_SOA.dir/src/fat32.c.o"
   "CMakeFiles/Practica_SOA.dir/src/ext4.c.o"
+  "CMakeFiles/Practica_SOA.dir/src/identifier.c.o"
+  "CMakeFiles/Practica_SOA.dir/src/view.c.o"
   "Practica_SOA.pdb"
   "Practica_SOA"
 )

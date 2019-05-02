@@ -78,6 +78,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/argval.c">
+			<Option target="Practica_SOA"/>
+		</Unit>
+		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/argval.h">
+			<Option target="Practica_SOA"/>
+		</Unit>
 		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/ext4.c">
 			<Option target="Practica_SOA"/>
 		</Unit>
@@ -90,16 +96,22 @@
 		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/fat32.h">
 			<Option target="Practica_SOA"/>
 		</Unit>
-		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/filesystemIdentifier.c">
+		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/identifier.c">
 			<Option target="Practica_SOA"/>
 		</Unit>
-		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/filesystemIdentifier.h">
+		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/identifier.h">
 			<Option target="Practica_SOA"/>
 		</Unit>
 		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/main.c">
 			<Option target="Practica_SOA"/>
 		</Unit>
 		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/types.h">
+			<Option target="Practica_SOA"/>
+		</Unit>
+		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/view.c">
+			<Option target="Practica_SOA"/>
+		</Unit>
+		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/src/view.h">
 			<Option target="Practica_SOA"/>
 		</Unit>
 		<Unit filename="/Users/jordana/Desktop/SOA_19_G_7/CMakeLists.txt">
