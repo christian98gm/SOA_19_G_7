@@ -1,5 +1,6 @@
 #include "fat32.h"
 
+/**********************FILESYSTEM_METADATA***************/
 void FAT32_showFileSystemInfo(int fd){
 	
 	//Go to filesystem start
@@ -17,6 +18,9 @@ void FAT32_showFileSystemInfo(int fd){
 	VIEW_showFat32MetaData(fat_boot, fat_boot_ext_32);
 	
 }
+/**********************FILE_METADATA + FILE_INFO***************/
+
+char* getFileInfo(struct dir_entry entry);
 int searchFile(unsigned long cluster, int showFile);
 
 struct fat_BS fat_boot;
@@ -27,11 +31,10 @@ static unsigned long first_data_sector;
 char* filename_SHORT;
 char* filename_LONG;
 
+
 char* formatShortFilename(char *filename);
 
-
-//El boot sector esta inclos en el nombre de reserved sectors
-void FAT32_showFileInfo(int fd_Aux, char* filenameAux) {
+void setBasicInfo(int fd_Aux, char* filenameAux){
     filename_SHORT = formatShortFilename(filenameAux);
     filename_LONG = filenameAux;//ASCIItoUTFilename(filenameAux);
     fd = fd_Aux;
@@ -42,46 +45,26 @@ void FAT32_showFileInfo(int fd_Aux, char* filenameAux) {
 
     max_entries_per_cluster = (fat_boot.sectors_per_cluster * fat_boot.bytes_per_sector) / FAT32_ENTRY_SIZE;
     first_data_sector = fat_boot.number_reserved_sectors +
-                                      (fat_boot.number_fat_tables * fat_boot_ext_32.number_sectors_fat_table_32);
+                        (fat_boot.number_fat_tables * fat_boot_ext_32.number_sectors_fat_table_32);
+}
+
+//El boot sector esta inclos en el nombre de reserved sectors
+void FAT32_showFileMetadata(int fd_Aux, char *filenameAux) {
+    setBasicInfo(fd_Aux, filenameAux);
     if(searchFile(fat_boot_ext_32.root_cluster,0) == 0) VIEW_showFat32FileMetadata(NULL,0);
 }
-char* formatShortFilename(char *filename){
-    char* filAux =  malloc(sizeof(char)*FAT32_SHORT_VOLUMENAME_MAX+sizeof(char));
-    for(int i = 0; i < FAT32_SHORT_VOLUMENAME_MAX +1;i++) filAux[i] = ' ';
-
-    int dotpos;
-    for(int i = 0; i < FAT32_SHORT_VOLUMENAME_MAX +1;i++){
-        if(filename[i] == '.'){
-            dotpos = i + 1;
-            break;
-        }
-        filAux[i] = toupper(filename[i]);
-    }
-    filAux[FAT32_SHORT_VOLUMENAME_MAX] = '\0';
-    for(int i = 0; i < 3; i++){
-        filAux[8+i] = toupper(filename[dotpos++]);
-    }
-    return filAux;
+void FAT32_showFileInfo(int fd_Aux, char *filenameAux){
+    setBasicInfo(fd_Aux, filenameAux);
+    if(searchFile(fat_boot_ext_32.root_cluster,1) == 0) VIEW_showFat32FileMetadata(NULL,0);
 }
+
+
 void parse_dir_entry(unsigned char *data, int *offset, int longname, struct dir_entry *entry);
+unsigned char* formatLongFilename(unsigned char *val, int length);
 
-unsigned char* formatLongFilename(unsigned char *val, int length){
-    int j = 0;
-    unsigned char* aux = malloc(1);
-    for(int i = 0; i < length; i++){
-        if(val[i] != '\0' && val[i] != 255){
-            aux[j] = val[i];
-            aux = realloc(aux, j+1);
-            j++;
-        }
-    }
-    aux[j] = '\0';
-    free(val);
-    return aux;
-}
 int searchFile(unsigned long cluster, int showFile){
 
-    unsigned long first_sector = (cluster-2 * fat_boot.sectors_per_cluster) + first_data_sector;
+    unsigned long first_sector = ((cluster-2) * fat_boot.sectors_per_cluster) + first_data_sector;
     unsigned char entries_cluster[max_entries_per_cluster][FAT32_ENTRY_SIZE];
     lseek(fd, first_sector * fat_boot.bytes_per_sector,SEEK_SET);
     read(fd,entries_cluster,sizeof(entries_cluster));
@@ -117,11 +100,10 @@ int searchFile(unsigned long cluster, int showFile){
                     }
                     if(strcmp((char*)filAux, (char*)entry.filename) == 0){
                         if(showFile == 0) VIEW_showFat32FileMetadata(&entry,1);
-                   //     else getFileInfo(entry.first_cluster);
+                        else VIEW_showFat32FileInfo(getFileInfo(entry));
                         free(entry.filename);
                         return 1;
                     }
-
                 }
                 offset = 0;
             }
@@ -134,7 +116,7 @@ int searchFile(unsigned long cluster, int showFile){
             read(fd,&next_cluster, sizeof(next_cluster));
             if(next_cluster >= 0xFFFFFF8) return 0;
             cluster = next_cluster;
-            first_sector = ((cluster-2 & 0x0FFFFFFF) * fat_boot.sectors_per_cluster) + first_data_sector;
+            first_sector = (((cluster & 0x0FFFFFFF)-2) * fat_boot.sectors_per_cluster) + first_data_sector;
             lseek(fd, first_sector * fat_boot.bytes_per_sector,SEEK_SET);
             read(fd,entries_cluster,sizeof(entries_cluster));
             num_entry_directory_in_cluster = 0;
@@ -144,6 +126,34 @@ int searchFile(unsigned long cluster, int showFile){
     return 0;
 }
 
+char* getFileInfo(struct dir_entry entry){
+    if (entry.first_cluster == 0) return NULL;
+    unsigned long size_cluster =  fat_boot.sectors_per_cluster*fat_boot.bytes_per_sector;
+    int num_clusters = entry.size_in_bytes/size_cluster;
+    int offset_last = entry.size_in_bytes % size_cluster;
+
+    char* file_info = malloc(sizeof(char)*entry.size_in_bytes + sizeof(char));
+    unsigned long  whereToGo;
+    unsigned int cluster = entry.first_cluster;
+    unsigned long first_sector;
+
+    first_sector = (((cluster & 0x0FFFFFFF) -2)* fat_boot.sectors_per_cluster) + first_data_sector;
+    lseek(fd, first_sector * fat_boot.bytes_per_sector,SEEK_SET);
+    int i;
+    for(i = 0; i < num_clusters;i++){
+        read(fd,&file_info[i*size_cluster],sizeof(char)*size_cluster);//TODO: MAYBE NOT POINTER, BUT MULTI
+        whereToGo = fat_boot.number_reserved_sectors * fat_boot.bytes_per_sector + cluster*4;
+        lseek(fd, whereToGo,SEEK_SET);
+        read(fd,&cluster, sizeof(cluster));
+        first_sector = (((cluster & 0x0FFFFFFF) -2) * fat_boot.sectors_per_cluster) + first_data_sector;
+        lseek(fd, first_sector * fat_boot.bytes_per_sector,SEEK_SET);
+    }
+    read(fd,&file_info[i*size_cluster],offset_last);
+    file_info[i*size_cluster + offset_last] = '\0';
+    return file_info;
+
+}
+/**********************AUXILIAR***************/
 unsigned short short_little_to_big_endian(unsigned char* to_convert);
 unsigned int int_little_to_big_endian(unsigned char* to_convert);
 
@@ -175,7 +185,7 @@ void parse_dir_entry(unsigned char *data, int *offset, int longname, struct dir_
     }
 }
 
-
+/**********************ENDIAN_CONVERSIONS***************/
 
 unsigned int int_little_to_big_endian(unsigned char* to_convert){
     return to_convert[0]+(to_convert[1]<<8)+(to_convert[2]<<16)+(to_convert[3]<<24);
@@ -186,5 +196,45 @@ unsigned short short_little_to_big_endian(unsigned char* to_convert){
     return to_convert[0]+(to_convert[1]<<8);
 }
 
+/**********************PARSE_FILENAMES***************/
+unsigned char* formatLongFilename(unsigned char *val, int length){
+    int j = 0;
+    unsigned char* aux = malloc(1);
+    for(int i = 0; i < length; i++){
+        if(val[i] != '\0' && val[i] != 255){
+            aux[j] = val[i];
+            aux = realloc(aux, j+1);
+            j++;
+        }
+    }
+    aux[j] = '\0';
+    free(val);
+    return aux;
+}
+
+char* formatShortFilename(char *filename){
+    char* filAux =  malloc(sizeof(char)*FAT32_SHORT_VOLUMENAME_MAX+sizeof(char));
+    for(int i = 0; i < FAT32_SHORT_VOLUMENAME_MAX +1;i++) filAux[i] = ' ';
+
+    int dotpos = -1;
+    for(int i = 0; i < FAT32_SHORT_VOLUMENAME_MAX +1;i++){
+        if(filename[i] == '.'){
+            dotpos = i + 1;
+            break;
+        }
+        if(filename[i] == '\0'){
+            break;
+        }
+        filAux[i] = toupper(filename[i]);
+    }
+    filAux[FAT32_SHORT_VOLUMENAME_MAX] = '\0';
+
+    if(dotpos != -1){
+        for(int i = 0; i < 3; i++){
+            filAux[8+i] = toupper(filename[dotpos++]);
+        }
+    }
+    return filAux;
+}
 
 

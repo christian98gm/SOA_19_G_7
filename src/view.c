@@ -37,3 +37,11 @@ void VIEW_showFat32FileMetadata(struct dir_entry *entry, int status){
     if(status == 1)  printf(FILE_METADATA,entry->size_in_bytes,(unsigned short)(entry->date_created & 31),
                             (unsigned short)((entry->date_created >> 5) & 5),(unsigned short)(1980+((entry->date_created >> 9) & 127)));
 }
+
+void VIEW_showFat32FileInfo(char* info){
+    printf(FILE_FOUND);
+    if(info == NULL) return;
+    printf(START_FILE);
+    printf("%s", info);
+    printf(END_FILE);
+}

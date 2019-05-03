@@ -46,10 +46,10 @@ int main(int argc, char * argv[]) {
 			}
 			break;
 		case GET_FILE_METADATA_CODE:
-            FAT32_showFileInfo(fd, argv[3]);
+            FAT32_showFileMetadata(fd, argv[3]);
 			break;
 		case GET_FILE_INFO_CODE:
-			//TODO: Get file data
+            FAT32_showFileInfo(fd, argv[3]);
 			break;
 	}
 

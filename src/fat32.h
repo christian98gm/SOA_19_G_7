@@ -30,6 +30,7 @@
 
 
 void FAT32_showFileSystemInfo(int fd);
-void FAT32_showFileInfo(int fd_Aux, char* filename);
+void FAT32_showFileMetadata(int fd_Aux, char *filename);
+void FAT32_showFileInfo(int fd_Aux, char *filenameAux);
 
 #endif //PRACTICA_SOA_FAT32_H

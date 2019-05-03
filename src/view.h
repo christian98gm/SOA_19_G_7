@@ -24,6 +24,9 @@
 //Filesystem file search
 #define FILE_NOT_FOUND "Error. File not found.\n"
 #define FILE_METADATA "File found! Size: %d bytes. Created on: %hu/%hu/%hu\n"
+#define FILE_FOUND "\nFile found! Showing content…\n\n"
+#define START_FILE "\n---------------------START_FILE----------------------\n"
+#define END_FILE "\n---------------------END_FILE----------------------\n"
 
 void VIEW_undefinedOperation(char * operation);
 
@@ -38,4 +41,7 @@ void VIEW_showExt4MetaData(struct Ext4MetaData metadata);
 void VIEW_showFat32MetaData(struct fat_BS fat_boot, struct fat_extBS_32 fat_boot_ext_32);
 
 void VIEW_showFat32FileMetadata(struct dir_entry *entry, int status);
+
+void VIEW_showFat32FileInfo(char* info);
+
 #endif //PRACTICA_SOA_VIEW_H
