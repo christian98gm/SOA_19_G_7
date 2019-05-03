@@ -6,6 +6,7 @@
 #include "types.h"
 #include "identifier.h"
 
+
 //Argument messages
 #define UNDEFINED_OPERATION "Operation [%s] could not be recognized. It must be one of the following: -info | -search | -show\n"
 #define WRONG_FORMAT "Wrong invocation format!\n"
@@ -20,6 +21,10 @@
 #define VOLUME_INFO "VOLUME INFO\nVolume name: %s\n"
 #define FAT_INFO "System Name: %s\nSector Size: %u\nSectors per Cluster: %u\nReserved Sectors: %u\nNumber of FATs: %u\nMaximum Root Entries: %u\nSectors per FAT: %u\nLabel: %s\n\n"
 
+//Filesystem file search
+#define FILE_NOT_FOUND "Error. File not found.\n"
+#define FILE_METADATA "File found! Size: %d bytes. Created on: %hu/%hu/%hu\n"
+
 void VIEW_undefinedOperation(char * operation);
 
 void VIEW_wrongFormat();
@@ -32,4 +37,5 @@ void VIEW_showExt4MetaData(struct Ext4MetaData metadata);
 
 void VIEW_showFat32MetaData(struct fat_BS fat_boot, struct fat_extBS_32 fat_boot_ext_32);
 
+void VIEW_showFat32FileMetadata(struct dir_entry *entry, int status);
 #endif //PRACTICA_SOA_VIEW_H

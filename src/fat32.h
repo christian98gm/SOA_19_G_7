@@ -24,17 +24,12 @@
 #define FAT32_SHORT_VOLUMENAME_MAX 11
 #define FAT32_LONG_NAME_SEGMENT 26
 #define ATTR_DIRECTORY 0x10
-typedef struct {
-    char *filename;
-    unsigned char attributes;
-    unsigned int first_cluster;
-    unsigned int file_size;
-    unsigned short isLongSpecialFilename;
-} __attribute__((packed))dir_entry;
+#define ATTR_HIDDEN 0x2
+
 
 
 
 void FAT32_showFileSystemInfo(int fd);
-int FAT32_showFileInfo(int fd_Aux, char* filename);
+void FAT32_showFileInfo(int fd_Aux, char* filename);
 
 #endif //PRACTICA_SOA_FAT32_H

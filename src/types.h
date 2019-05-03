@@ -6,8 +6,7 @@
 #define MAX_DATE 64
 
 //Basic Fat struct
-typedef struct fat_BS
-{
+typedef struct fat_BS{
     unsigned char 		bootjmp[3];
     unsigned char 		oem_name[8];
     unsigned short 	    bytes_per_sector;
@@ -26,8 +25,7 @@ typedef struct fat_BS
 }__attribute__((packed)) fat_BS_t;//S'afegeix l'atribut de packed per evitar padding
 
 //Fat32 struct
-typedef struct fat_extBS_32
-{
+typedef struct fat_extBS_32{
     //extended fat32 stuff
     unsigned int		number_sectors_fat_table_32;
     unsigned short		extended_flags;
@@ -178,4 +176,13 @@ struct Ext4MetaData {
 	struct VolumeInfo volume;
 };
 
+//FAT32 dir entry
+typedef struct dir_entry{
+    unsigned char *filename;
+    unsigned char attributes;
+    unsigned int first_cluster;
+    unsigned int size_in_bytes;
+    unsigned short date_created;
+    unsigned short isLongSpecialFilename;
+} __attribute__((packed)) dir_entry_aux;
 #endif //PRACTICA_SOA_TYPES_H

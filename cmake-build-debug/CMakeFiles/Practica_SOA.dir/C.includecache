@@ -6,16 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/jordana/Desktop/SOA_19_G_7/src/argval.c
-argval.h
-/Users/jordana/Desktop/SOA_19_G_7/src/argval.h
-
-/Users/jordana/Desktop/SOA_19_G_7/src/argval.h
-string.h
--
-view.h
-/Users/jordana/Desktop/SOA_19_G_7/src/view.h
-
 /Users/jordana/Desktop/SOA_19_G_7/src/ext4.h
 unistd.h
 -
@@ -52,10 +42,6 @@ stdlib.h
 ctype.h
 -
 
-/Users/jordana/Desktop/SOA_19_G_7/src/identifier.c
-identifier.h
-/Users/jordana/Desktop/SOA_19_G_7/src/identifier.h
-
 /Users/jordana/Desktop/SOA_19_G_7/src/identifier.h
 stdio.h
 -
@@ -68,21 +54,7 @@ ext4.h
 fat32.h
 /Users/jordana/Desktop/SOA_19_G_7/src/fat32.h
 
-/Users/jordana/Desktop/SOA_19_G_7/src/main.c
-fcntl.h
--
-argval.h
-/Users/jordana/Desktop/SOA_19_G_7/src/argval.h
-view.h
-/Users/jordana/Desktop/SOA_19_G_7/src/view.h
-identifier.h
-/Users/jordana/Desktop/SOA_19_G_7/src/identifier.h
-
 /Users/jordana/Desktop/SOA_19_G_7/src/types.h
-
-/Users/jordana/Desktop/SOA_19_G_7/src/view.c
-view.h
-/Users/jordana/Desktop/SOA_19_G_7/src/view.h
 
 /Users/jordana/Desktop/SOA_19_G_7/src/view.h
 stdio.h
