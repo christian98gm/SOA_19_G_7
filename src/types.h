@@ -5,6 +5,12 @@
 #define MAX_NAME 16
 #define MAX_DATE 64
 
+#define EXT4_NDIR_BLOCKS 12
+#define EXT4_IND_BLOCK EXT4_NDIR_BLOCKS
+#define EXT4_DIND_BLOCK (EXT4_IND_BLOCK + 1)
+#define EXT4_TIND_BLOCK (EXT4_DIND_BLOCK + 1)
+#define EXT4_N_BLOCKS (EXT4_TIND_BLOCK + 1)
+
 //Basic Fat struct
 typedef struct fat_BS{
     unsigned char 		bootjmp[3];
@@ -141,6 +147,122 @@ struct ext_super_block {
 
 }__attribute__((packed));
 
+//Block group descriptor struct
+struct ext4_group_desc
+{
+    unsigned int	bg_block_bitmap_lo;	/* Blocks bitmap block */
+    unsigned int	bg_inode_bitmap_lo;	/* Inodes bitmap block */
+    unsigned int	bg_inode_table_lo;	/* Inodes table block */
+    unsigned short	bg_free_blocks_count;	/* Free blocks count */
+    unsigned short	bg_free_inodes_count;	/* Free inodes count */
+    unsigned short	bg_used_dirs_count;	/* Directories count */
+    unsigned short	bg_flags;		/* EXT4_BG_flags (INODE_UNINIT, etc) */
+    unsigned int	bg_reserved[2];		/* Likely block/inode bitmap checksum */
+    unsigned short  bg_itable_unused;	/* Unused inodes count */
+    unsigned short  bg_checksum;		/* crc16(sb_uuid+group+desc) */
+    unsigned int	bg_block_bitmap_hi;	/* Blocks bitmap block MSB */
+    unsigned int	bg_inode_bitmap_hi;	/* Inodes bitmap block MSB */
+    unsigned int	bg_inode_table_hi;	/* Inodes table block MSB */
+    unsigned short	bg_free_blocks_count_hi;/* Free blocks count MSB */
+    unsigned short	bg_free_inodes_count_hi;/* Free inodes count MSB */
+    unsigned short	bg_used_dirs_count_hi;	/* Directories count MSB */
+    unsigned short	bg_itable_unused_hi;	/* Unused inodes count MSB */
+    unsigned int	bg_reserved2[3];
+}__attribute__((packed));
+
+struct ext4_inode {
+    unsigned short	i_mode;		/* File mode */
+    unsigned short	i_uid;		/* Low 16 bits of Owner Uid */
+    unsigned int	i_size_lo;	/* Size in bytes */
+    unsigned int	i_atime;	/* Access time */
+    unsigned int	i_ctime;	/* Inode Change time */
+    unsigned int	i_mtime;	/* Modification time */
+    unsigned int	i_dtime;	/* Deletion Time */
+    unsigned short	i_gid;		/* Low 16 bits of Group Id */
+    unsigned short	i_links_count;	/* Links count */
+    unsigned int	i_blocks_lo;	/* Blocks count */
+    unsigned int	i_flags;	/* File flags */
+    union {
+        struct {
+            unsigned int  l_i_version;
+        } linux1;
+        struct {
+            unsigned int  h_i_translator;
+        } hurd1;
+        struct {
+            unsigned int  m_i_reserved1;
+        } masix1;
+    } osd1;				/* OS dependent 1 */
+    unsigned int	i_block[EXT4_N_BLOCKS];/* Pointers to blocks */
+    unsigned int	i_generation;	/* File version (for NFS) */
+    unsigned int	i_file_acl_lo;	/* File ACL */
+    unsigned int	i_size_high;
+    unsigned int	i_obso_faddr;	/* Obsoleted fragment address */
+    union {
+        struct {
+            unsigned short	l_i_blocks_high; /* were l_i_reserved1 */
+            unsigned short	l_i_file_acl_high;
+            unsigned short	l_i_uid_high;	/* these 2 fields */
+            unsigned short	l_i_gid_high;	/* were reserved2[0] */
+            unsigned int	l_i_reserved2;
+        } linux2;
+        struct {
+            unsigned short	h_i_reserved1;	/* Obsoleted fragment number/size which are removed in ext4 */
+            unsigned short	h_i_mode_high;
+            unsigned short	h_i_uid_high;
+            unsigned short	h_i_gid_high;
+            unsigned int	h_i_author;
+        } hurd2;
+        struct {
+            unsigned short	h_i_reserved1;	/* Obsoleted fragment number/size which are removed in ext4 */
+            unsigned short	m_i_file_acl_high;
+            unsigned int	m_i_reserved2[2];
+        } masix2;
+    } osd2;				/* OS dependent 2 */
+    unsigned short	i_extra_isize;
+    unsigned short	i_pad1;
+    unsigned int  i_ctime_extra;  /* extra Change time      (nsec << 2 | epoch) */
+    unsigned int  i_mtime_extra;  /* extra Modification time(nsec << 2 | epoch) */
+    unsigned int  i_atime_extra;  /* extra Access time      (nsec << 2 | epoch) */
+    unsigned int  i_crtime;       /* File Creation time */
+    unsigned int  i_crtime_extra; /* extra FileCreationtime (nsec << 2 | epoch) */
+    unsigned int  i_version_hi;	/* high 32 bits for 64-bit version */
+}__attribute__((packed));
+
+/*
+ * This is the extent on-disk structure.
+ * It's used at the bottom of the tree.
+ */
+struct ext4_extent {
+    unsigned long	ee_block;	/* first logical block extent covers */
+    unsigned int	ee_len;		/* number of blocks covered by extent */
+    unsigned int	ee_start_hi;	/* high 16 bits of physical block */
+    unsigned long	ee_start_lo;	/* low 32 bits of physical block */
+}__attribute__((packed));
+
+/*
+ * This is index on-disk structure.
+ * It's used at all the levels except the bottom.
+ */
+struct ext4_extent_idx {
+    unsigned long	ei_block;	/* index covers logical blocks from 'block' */
+    unsigned long	ei_leaf_lo;	/* pointer to the physical block of the next *
+				 * level. leaf or next index could be there */
+    unsigned int	ei_leaf_hi;	/* high 16 bits of physical block */
+    unsigned int	ei_unused;
+}__attribute__((packed));
+
+/*
+ * Each block (leaves and indexes), even inode-stored has header.
+ */
+struct ext4_extent_header {
+    unsigned int	eh_magic;	/* probably will support different formats */
+    unsigned int	eh_entries;	/* number of valid entries */
+    unsigned int	eh_max;		/* capacity of store in entries */
+    unsigned int	eh_depth;	/* has tree real underlying blocks? */
+    unsigned long	eh_generation;	/* generation of the tree */
+}__attribute__((packed));
+
 //Ext4 inode metadata
 struct InodeInfo {
 	int inodeSize;
@@ -153,9 +275,9 @@ struct InodeInfo {
 //Ext4 block metadata
 struct BlockInfo {
 	double blockSize;
-	long reservedBlocks;
-	long freeBlocks;
-	long totalBlocks;
+    long long reservedBlocks;
+    long long freeBlocks;
+    long long totalBlocks;
 	int firstBlock;
 	int blockGroup;
 	int fragsGroup;

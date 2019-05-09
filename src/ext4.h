@@ -12,6 +12,7 @@
 
 //Ext4 utils
 #define SUPER_BLOCK_OFFSET 1024
+
 #define LONG_FEATURE_MASK 0x80
 #define EXTENT_FEATURE_MASK 0x40
 #define JOURNAL_FEATURE_MASK 0x4
@@ -19,5 +20,7 @@
 #define EXT_MAG_SIGN 0xEF53
 
 void EXT4_showFileSystemInfo(int fd);
+void EXT4_showFileMetadata(int fd, char *filename);
+void EXT4_showFileInfo(int fd, char *filename);
 
 #endif //PRACTICA_SOA_EXT4_H

@@ -3,4 +3,4 @@ project(Practica_SOA C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(Practica_SOA src/main.c src/argval.c src/argval.h src/types.h src/fat32.c src/fat32.h src/ext4.c src/ext4.h src/identifier.c src/identifier.h src/view.c src/view.h)
+add_executable(Practica_SOA src/main.c src/argval.c src/argval.h src/types.h src/fat32.c src/fat32.h src/ext4.c src/ext4.h src/identifier.c src/identifier.h src/view.c src/view.h src/endian.h src/endian.c)

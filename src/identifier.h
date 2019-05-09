@@ -15,7 +15,7 @@
 #define EXT2_FS 10
 #define EXT3_FS 11
 #define EXT4_FS 12
-#define UNDEFINED_FS
+//#define UNDEFINED_FS
 
 //Filesystem names
 #define FAT12_FS_NAME "FAT12"

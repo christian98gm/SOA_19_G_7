@@ -14,7 +14,7 @@ int main(int argc, char * argv[]) {
 		return 1;
 	}
 
-    chdir("/Users/jordana/Desktop/SOA_19_G_7");
+    chdir("/Users/christian/Desktop/SOA_19_G_7");
 
 	//Get volume full path
 	char file[MAX_PATH];
@@ -46,10 +46,18 @@ int main(int argc, char * argv[]) {
 			}
 			break;
 		case GET_FILE_METADATA_CODE:
-            FAT32_showFileMetadata(fd, argv[3]);
+		    if(type == FAT32_FS) {
+                FAT32_showFileMetadata(fd, argv[3]);
+            } else {
+		        EXT4_showFileMetadata(fd, argv[3]);
+		    }
 			break;
 		case GET_FILE_INFO_CODE:
-            FAT32_showFileInfo(fd, argv[3]);
+		    if(type == FAT32_FS) {
+                FAT32_showFileInfo(fd, argv[3]);
+            } else {
+                EXT4_showFileInfo(fd, argv[3]);
+		    }
 			break;
 	}
 

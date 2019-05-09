@@ -26,9 +26,9 @@ void EXT4_showFileSystemInfo(int fd){
 	//Get block info
 	metadata.block.blockSize = pow(2, 10 + sb.s_log_block_size);
 	if(sb.s_feature_incompat & LONG_FEATURE_MASK) {
-		metadata.block.reservedBlocks = ((long) sb.s_r_blocks_count_hi << 32) | ((long) sb.s_r_blocks_count_lo & 0xFFFFFFFFL);
-		metadata.block.freeBlocks = ((long) sb.s_free_blocks_count_hi << 32) | ((long) sb.s_free_blocks_count_lo & 0xFFFFFFFFL);
-		metadata.block.totalBlocks = ((long) sb.s_blocks_count_hi << 32) | ((long) sb.s_blocks_count_lo & 0xFFFFFFFFL);
+		metadata.block.reservedBlocks = (long long) sb.s_r_blocks_count_hi << 32 | (long) sb.s_r_blocks_count_lo;
+		metadata.block.freeBlocks = (long long) sb.s_free_blocks_count_hi << 32 | (long) sb.s_free_blocks_count_lo;
+		metadata.block.totalBlocks = (long long) sb.s_blocks_count_hi << 32 | (long) sb.s_blocks_count_lo;
 	} else {
 		metadata.block.reservedBlocks = (long) sb.s_r_blocks_count_lo;
 		metadata.block.freeBlocks = (long) sb.s_free_blocks_count_lo;
@@ -47,6 +47,57 @@ void EXT4_showFileSystemInfo(int fd){
 	//Show info
 	VIEW_showExt4MetaData(metadata);
 	
+}
+
+void EXT4_showFileMetadata(int fd, char *filename) {
+
+    //Get super block
+    lseek(fd, SUPER_BLOCK_OFFSET, SEEK_SET);
+    struct ext_super_block sb;
+    read(fd, &sb, sizeof(struct ext_super_block));
+
+    //Get block group descriptor
+    int blockSize = (int) pow(2, 10 + sb.s_log_block_size);
+    struct ext4_group_desc groupDesc;
+    lseek(fd, blockSize == 1024 ? blockSize * 2 : blockSize, SEEK_SET);
+    read(fd, &groupDesc, sizeof(struct ext4_group_desc));
+
+    //Get total inodes
+    int inodeCount = sb.s_inodes_per_group;
+    if(sb.s_feature_incompat & LONG_FEATURE_MASK) {
+        inodeCount -= ((int) groupDesc.bg_itable_unused_hi << 16 | groupDesc.bg_itable_unused);
+    } else {
+        inodeCount -= groupDesc.bg_itable_unused;
+    }
+
+    //Get inode table location
+    long long inodeTableBlock;
+    if(sb.s_feature_incompat & LONG_FEATURE_MASK) {
+        inodeTableBlock = ((long long) groupDesc.bg_inode_table_hi << 32 | (long) groupDesc.bg_inode_table_lo);
+    } else {
+        inodeTableBlock = (long) groupDesc.bg_inode_table_lo;
+    }
+
+    //Get root inode
+    struct ext4_inode rootInode;
+    int offset = inodeTableBlock * blockSize;
+    lseek(fd, offset + sizeof(struct ext4_inode), SEEK_SET);
+    read(fd, &rootInode, sizeof(struct ext4_inode));
+
+    //Get extent header
+    struct ext4_extent_header header;
+    header.eh_magic = (rootInode.i_block[12] >> 16) & 0xFF;
+    header.eh_entries = rootInode.i_block[12] & 0xFF;
+    header.eh_max = (rootInode.i_block[13] >> 16) & 0xFF;
+    header.eh_depth = rootInode.i_block[13] & 0xFF;
+    header.eh_generation = rootInode.i_block[14];
+
+    return;
+
+}
+
+void EXT4_showFileInfo(int fd, char *filename) {
+
 }
 
 void getDate(int secs, char * dateType, char * msg) {
