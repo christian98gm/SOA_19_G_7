@@ -9,8 +9,6 @@
 C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.c
 ext4.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.h
-stdint.h
--
 
 C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.h
 unistd.h
@@ -22,6 +20,10 @@ math.h
 string.h
 -
 time.h
+-
+stdint.h
+-
+stdlib.h
 -
 types.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/types.h
@@ -62,6 +64,8 @@ stdint.h
 
 C:/Users/christian/Desktop/SOA_19_G_7/src/view.h
 stdio.h
+-
+stdint.h
 -
 types.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/types.h

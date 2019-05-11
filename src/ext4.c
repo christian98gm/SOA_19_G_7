@@ -1,19 +1,22 @@
 #include "ext4.h"
-#include <stdint.h>
 
 //Date utils
 #define DATE_INFO "%s: %s"
+#define NUMERIC_DATE "%.2d/%.2d/%.4d"
 #define LAST_CHECK "Last check"
 #define LAST_MOUNT "Last mount"
 #define LAST_WRITTEN "Last written"
 
 void getDate(int secs, char * dateType, char * msg);
+void getNumericDate(int secs, char * msg);
 uint16_t getInodeSize(int fd);
 uint64_t getInodeOffset(int fd);
 uint32_t findFileInode(int fd, char * filename, uint64_t offset, uint16_t blockSize, int typed);
 uint32_t checkFileExistance(int fd, char * filename, uint64_t offset, uint16_t blockSize) {
     return 0;
 }
+struct FileMetaData getInodeMetaData(int fd, uint32_t fileInode);
+
 uint32_t checkFileExistance2(int fd, char * filename, uint64_t offset, uint16_t blockSize);
 
 void EXT4_showFileSystemInfo(int fd){
@@ -89,11 +92,11 @@ void EXT4_showFileMetadata(int fd, char *filename) {
 
     //Check if file was found
     if(fileInode != 0) {
-        printf("%d -> File found", fileInode);
-        //TODO: File found
+        struct FileMetaData metaData;
+        metaData = getInodeMetaData(fd, fileInode);
+        VIEW_fileFound(metaData);
     } else {
-        printf("File not found");
-        //TODO: File not found
+        VIEW_fileNotFound();
     }
 
 }
@@ -133,6 +136,36 @@ uint16_t getInodeSize(int fd) {
 
     //Get block size
     return sb.s_inode_size;
+
+}
+
+struct FileMetaData getInodeMetaData(int fd, uint32_t fileInode) {
+
+    //Go to inode offset
+    uint64_t offset = getInodeOffset(fd);
+    offset += (getInodeSize(fd) * (fileInode - 1));
+
+    //Get inode
+    struct ext4_inode inode;
+    lseek(fd, offset, SEEK_SET);
+    read(fd, &inode, sizeof(struct ext4_inode));
+
+    //Get data
+    struct FileMetaData fileMetaData;
+    fileMetaData.size = (inode.i_size_high << 32) | inode.i_size_lo;
+    getNumericDate(inode.i_crtime, fileMetaData.createdAt);
+    return fileMetaData;
+
+}
+
+void getNumericDate(int secs, char * msg) {
+
+    //Get time
+    time_t t = secs;
+    struct tm * time = localtime(&t);
+
+    //Get numeric date
+    sprintf(msg, NUMERIC_DATE, time->tm_mday, (time->tm_mon + 1), (time->tm_year + 1900));
 
 }
 
@@ -202,12 +235,14 @@ uint32_t checkFileExistance2(int fd, char * filename, uint64_t offset, uint16_t 
         read(fd, &dirEntry, sizeof(struct ext4_dir_entry_2) - sizeof(char *));
 
         //Get dir name
-        dirEntry.name = (char *) malloc(sizeof(char) * dirEntry.name_len + sizeof(char));
+        int length = __min(dirEntry.name_len, MAX_ENTRY_NAME);
+        dirEntry.name = (char *) malloc(sizeof(char) * (length + 1));
         if(dirEntry.name != NULL) {
 
             //Read name
-            read(fd, dirEntry.name, sizeof(char) * dirEntry.name_len);
-            dirEntry.name[dirEntry.name_len] = '\0';
+            lseek(fd, offset + curSize + 8, SEEK_SET);
+            read(fd, dirEntry.name, length);
+            dirEntry.name[length] = '\0';
 
             //Check inode 0
             if(dirEntry.inode == 0) {

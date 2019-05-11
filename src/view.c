@@ -34,14 +34,22 @@ void VIEW_showFat32MetaData(struct fat_BS fat_boot, struct fat_extBS_32 fat_boot
 }
 void VIEW_showFat32FileMetadata(struct dir_entry *entry, int status){
     if(status == 0) printf(FILE_NOT_FOUND);
-    if(status == 1)  printf(FILE_METADATA,entry->size_in_bytes,(unsigned short)(entry->date_created & 31),
+    if(status == 1)  printf(FILE_FOUND_METADATA, entry->size_in_bytes,(unsigned short)(entry->date_created & 31),
                             (unsigned short)((entry->date_created >> 5) & 5),(unsigned short)(1980+((entry->date_created >> 9) & 127)));
 }
 
-void VIEW_showFat32FileInfo(char* info){
-    printf(FILE_FOUND);
+void VIEW_showFat32FileInfo(char * info){
+    printf(FILE_FOUND_CONTENT);
     if(info == NULL) return;
     printf(START_FILE);
     printf("%s", info);
     printf(END_FILE);
+}
+
+void VIEW_fileNotFound() {
+    printf(FILE_NOT_FOUND);
+}
+
+void VIEW_fileFound(struct FileMetaData metaData) {
+    printf(FILE_FOUND_METADATA_2, (long) metaData.size, metaData.createdAt);
 }

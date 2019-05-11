@@ -324,9 +324,4 @@ typedef struct dir_entry{
     unsigned short isLongSpecialFilename;
 } __attribute__((packed)) dir_entry_aux;
 
-struct FileMetaData {
-    uint64_t size;
-    char createdAt[MAX_DATE];
-};
-
 #endif //PRACTICA_SOA_TYPES_H

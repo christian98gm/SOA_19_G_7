@@ -6,13 +6,15 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
+#include <stdint.h>
+#include <stdlib.h>
 
 #include "types.h"
 #include "view.h"
 
 //Ext4 utils
 #define SUPER_BLOCK_OFFSET 1024
-
+#define MAX_ENTRY_NAME 255
 #define LONG_FEATURE_MASK 0x80
 #define EXTENT_FEATURE_MASK 0x40
 #define JOURNAL_FEATURE_MASK 0x4

@@ -2,10 +2,10 @@
 #define PRACTICA_SOA_VIEW_H
 
 #include <stdio.h>
+#include <stdint.h>
 
 #include "types.h"
 #include "identifier.h"
-
 
 //Argument messages
 #define UNDEFINED_OPERATION "Operation [%s] could not be recognized. It must be one of the following: -info | -search | -show\n"
@@ -23,10 +23,16 @@
 
 //Filesystem file search
 #define FILE_NOT_FOUND "Error. File not found.\n"
-#define FILE_METADATA "File found! Size: %d bytes. Created on: %hu/%hu/%hu\n"
-#define FILE_FOUND "\nFile found! Showing content…\n\n"
+#define FILE_FOUND_METADATA "File found! Size: %d bytes. Created on: %hu/%hu/%hu\n"
+#define FILE_FOUND_METADATA_2 "File found! Size: %ld bytes. Created on: %s\n"
+#define FILE_FOUND_CONTENT "\nFile found! Showing content…\n\n"
 #define START_FILE "\n---------------------START_FILE----------------------\n"
 #define END_FILE "\n---------------------END_FILE----------------------\n"
+
+struct FileMetaData {
+    uint64_t size;
+    char createdAt[MAX_DATE];
+};
 
 void VIEW_undefinedOperation(char * operation);
 
@@ -43,5 +49,9 @@ void VIEW_showFat32MetaData(struct fat_BS fat_boot, struct fat_extBS_32 fat_boot
 void VIEW_showFat32FileMetadata(struct dir_entry *entry, int status);
 
 void VIEW_showFat32FileInfo(char* info);
+
+void VIEW_fileNotFound();
+
+void VIEW_fileFound(struct FileMetaData metaData);
 
 #endif //PRACTICA_SOA_VIEW_H
