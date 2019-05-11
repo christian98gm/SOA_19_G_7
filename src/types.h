@@ -1,6 +1,8 @@
 #ifndef PRACTICA_SOA_TYPES_H
 #define PRACTICA_SOA_TYPES_H
 
+#include <stdint.h>
+
 //Strcut utils
 #define MAX_NAME 16
 #define MAX_DATE 64
@@ -49,9 +51,7 @@ typedef struct fat_extBS_32{
 
 }__attribute__((packed)) fat_extBS_32_t;
 
-
-
-
+//TODO: Check struct
 //Super block structure
 struct ext_super_block {
 /*00*/unsigned int	s_inodes_count;		/* Inodes count */
@@ -150,83 +150,90 @@ struct ext_super_block {
 //Block group descriptor struct
 struct ext4_group_desc
 {
-    unsigned int	bg_block_bitmap_lo;	/* Blocks bitmap block */
-    unsigned int	bg_inode_bitmap_lo;	/* Inodes bitmap block */
-    unsigned int	bg_inode_table_lo;	/* Inodes table block */
-    unsigned short	bg_free_blocks_count;	/* Free blocks count */
-    unsigned short	bg_free_inodes_count;	/* Free inodes count */
-    unsigned short	bg_used_dirs_count;	/* Directories count */
-    unsigned short	bg_flags;		/* EXT4_BG_flags (INODE_UNINIT, etc) */
-    unsigned int	bg_reserved[2];		/* Likely block/inode bitmap checksum */
-    unsigned short  bg_itable_unused;	/* Unused inodes count */
-    unsigned short  bg_checksum;		/* crc16(sb_uuid+group+desc) */
-    unsigned int	bg_block_bitmap_hi;	/* Blocks bitmap block MSB */
-    unsigned int	bg_inode_bitmap_hi;	/* Inodes bitmap block MSB */
-    unsigned int	bg_inode_table_hi;	/* Inodes table block MSB */
-    unsigned short	bg_free_blocks_count_hi;/* Free blocks count MSB */
-    unsigned short	bg_free_inodes_count_hi;/* Free inodes count MSB */
-    unsigned short	bg_used_dirs_count_hi;	/* Directories count MSB */
-    unsigned short	bg_itable_unused_hi;	/* Unused inodes count MSB */
-    unsigned int	bg_reserved2[3];
+    uint32_t	bg_block_bitmap_lo;	/* Blocks bitmap block */
+    uint32_t	bg_inode_bitmap_lo;	/* Inodes bitmap block */
+    uint32_t	bg_inode_table_lo;	/* Inodes table block */
+    uint16_t	bg_free_blocks_count_lo;/* Free blocks count */
+    uint16_t	bg_free_inodes_count_lo;/* Free inodes count */
+    uint16_t	bg_used_dirs_count_lo;	/* Directories count */
+    uint16_t	bg_flags;		/* EXT4_BG_flags (INODE_UNINIT, etc) */
+    uint32_t  bg_exclude_bitmap_lo;   /* Exclude bitmap for snapshots */
+    uint16_t  bg_block_bitmap_csum_lo;/* crc32c(s_uuid+grp_num+bbitmap) LE */
+    uint16_t  bg_inode_bitmap_csum_lo;/* crc32c(s_uuid+grp_num+ibitmap) LE */
+    uint16_t  bg_itable_unused_lo;	/* Unused inodes count */
+    uint16_t  bg_checksum;		/* crc16(sb_uuid+group+desc) */
+    uint32_t	bg_block_bitmap_hi;	/* Blocks bitmap block MSB */
+    uint32_t	bg_inode_bitmap_hi;	/* Inodes bitmap block MSB */
+    uint32_t	bg_inode_table_hi;	/* Inodes table block MSB */
+    uint16_t	bg_free_blocks_count_hi;/* Free blocks count MSB */
+    uint16_t	bg_free_inodes_count_hi;/* Free inodes count MSB */
+    uint16_t	bg_used_dirs_count_hi;	/* Directories count MSB */
+    uint16_t  bg_itable_unused_hi;    /* Unused inodes count MSB */
+    uint32_t  bg_exclude_bitmap_hi;   /* Exclude bitmap block MSB */
+    uint16_t  bg_block_bitmap_csum_hi;/* crc32c(s_uuid+grp_num+bbitmap) BE */
+    uint16_t  bg_inode_bitmap_csum_hi;/* crc32c(s_uuid+grp_num+ibitmap) BE */
+    uint32_t   bg_reserved;
 }__attribute__((packed));
 
 struct ext4_inode {
-    unsigned short	i_mode;		/* File mode */
-    unsigned short	i_uid;		/* Low 16 bits of Owner Uid */
-    unsigned int	i_size_lo;	/* Size in bytes */
-    unsigned int	i_atime;	/* Access time */
-    unsigned int	i_ctime;	/* Inode Change time */
-    unsigned int	i_mtime;	/* Modification time */
-    unsigned int	i_dtime;	/* Deletion Time */
-    unsigned short	i_gid;		/* Low 16 bits of Group Id */
-    unsigned short	i_links_count;	/* Links count */
-    unsigned int	i_blocks_lo;	/* Blocks count */
-    unsigned int	i_flags;	/* File flags */
+    uint16_t	i_mode;		/* File mode */
+    uint16_t	i_uid;		/* Low 16 bits of Owner Uid */
+    uint32_t	i_size_lo;	/* Size in bytes */
+    uint32_t	i_atime;	/* Access time */
+    uint32_t	i_ctime;	/* Inode Change time */
+    uint32_t	i_mtime;	/* Modification time */
+    uint32_t	i_dtime;	/* Deletion Time */
+    uint16_t	i_gid;		/* Low 16 bits of Group Id */
+    uint16_t	i_links_count;	/* Links count */
+    uint32_t	i_blocks_lo;	/* Blocks count */
+    uint32_t	i_flags;	/* File flags */
     union {
         struct {
-            unsigned int  l_i_version;
+            uint32_t  l_i_version;
         } linux1;
         struct {
-            unsigned int  h_i_translator;
+            uint32_t  h_i_translator;
         } hurd1;
         struct {
-            unsigned int  m_i_reserved1;
+            uint32_t  m_i_reserved1;
         } masix1;
     } osd1;				/* OS dependent 1 */
-    unsigned int	i_block[EXT4_N_BLOCKS];/* Pointers to blocks */
-    unsigned int	i_generation;	/* File version (for NFS) */
-    unsigned int	i_file_acl_lo;	/* File ACL */
-    unsigned int	i_size_high;
-    unsigned int	i_obso_faddr;	/* Obsoleted fragment address */
+    uint32_t	i_block[EXT4_N_BLOCKS];/* Pointers to blocks */
+    uint32_t	i_generation;	/* File version (for NFS) */
+    uint32_t	i_file_acl_lo;	/* File ACL */
+    uint32_t	i_size_high;
+    uint32_t	i_obso_faddr;	/* Obsoleted fragment address */
     union {
         struct {
-            unsigned short	l_i_blocks_high; /* were l_i_reserved1 */
-            unsigned short	l_i_file_acl_high;
-            unsigned short	l_i_uid_high;	/* these 2 fields */
-            unsigned short	l_i_gid_high;	/* were reserved2[0] */
-            unsigned int	l_i_reserved2;
+            uint16_t	l_i_blocks_high; /* were l_i_reserved1 */
+            uint16_t	l_i_file_acl_high;
+            uint16_t	l_i_uid_high;	/* these 2 fields */
+            uint16_t	l_i_gid_high;	/* were reserved2[0] */
+            uint16_t	l_i_checksum_lo;/* crc32c(uuid+inum+inode) LE */
+            uint16_t	l_i_reserved;
         } linux2;
         struct {
-            unsigned short	h_i_reserved1;	/* Obsoleted fragment number/size which are removed in ext4 */
-            unsigned short	h_i_mode_high;
-            unsigned short	h_i_uid_high;
-            unsigned short	h_i_gid_high;
-            unsigned int	h_i_author;
+            uint16_t	h_i_reserved1;	/* Obsoleted fragment number/size which are removed in ext4 */
+            uint16_t	h_i_mode_high;
+            uint16_t	h_i_uid_high;
+            uint16_t	h_i_gid_high;
+            uint32_t	h_i_author;
         } hurd2;
         struct {
-            unsigned short	h_i_reserved1;	/* Obsoleted fragment number/size which are removed in ext4 */
-            unsigned short	m_i_file_acl_high;
-            unsigned int	m_i_reserved2[2];
+            uint16_t	h_i_reserved1;	/* Obsoleted fragment number/size which are removed in ext4 */
+            uint16_t	m_i_file_acl_high;
+            uint32_t	m_i_reserved2[2];
         } masix2;
     } osd2;				/* OS dependent 2 */
-    unsigned short	i_extra_isize;
-    unsigned short	i_pad1;
-    unsigned int  i_ctime_extra;  /* extra Change time      (nsec << 2 | epoch) */
-    unsigned int  i_mtime_extra;  /* extra Modification time(nsec << 2 | epoch) */
-    unsigned int  i_atime_extra;  /* extra Access time      (nsec << 2 | epoch) */
-    unsigned int  i_crtime;       /* File Creation time */
-    unsigned int  i_crtime_extra; /* extra FileCreationtime (nsec << 2 | epoch) */
-    unsigned int  i_version_hi;	/* high 32 bits for 64-bit version */
+    uint16_t	i_extra_isize;
+    uint16_t	i_checksum_hi;	/* crc32c(uuid+inum+inode) BE */
+    uint32_t  i_ctime_extra;  /* extra Change time      (nsec << 2 | epoch) */
+    uint32_t  i_mtime_extra;  /* extra Modification time(nsec << 2 | epoch) */
+    uint32_t  i_atime_extra;  /* extra Access time      (nsec << 2 | epoch) */
+    uint32_t  i_crtime;       /* File Creation time */
+    uint32_t  i_crtime_extra; /* extra FileCreationtime (nsec << 2 | epoch) */
+    uint32_t  i_version_hi;	/* high 32 bits for 64-bit version */
+    uint32_t	i_projid;	/* Project ID */
 }__attribute__((packed));
 
 /*
@@ -234,10 +241,10 @@ struct ext4_inode {
  * It's used at the bottom of the tree.
  */
 struct ext4_extent {
-    unsigned long	ee_block;	/* first logical block extent covers */
-    unsigned int	ee_len;		/* number of blocks covered by extent */
-    unsigned int	ee_start_hi;	/* high 16 bits of physical block */
-    unsigned long	ee_start_lo;	/* low 32 bits of physical block */
+    uint32_t	ee_block;	/* first logical block extent covers */
+    uint16_t	ee_len;		/* number of blocks covered by extent */
+    uint16_t	ee_start_hi;	/* high 16 bits of physical block */
+    uint32_t	ee_start_lo;	/* low 32 bits of physical block */
 }__attribute__((packed));
 
 /*
@@ -245,22 +252,31 @@ struct ext4_extent {
  * It's used at all the levels except the bottom.
  */
 struct ext4_extent_idx {
-    unsigned long	ei_block;	/* index covers logical blocks from 'block' */
-    unsigned long	ei_leaf_lo;	/* pointer to the physical block of the next *
+    uint32_t	ei_block;	/* index covers logical blocks from 'block' */
+    uint32_t	ei_leaf_lo;	/* pointer to the physical block of the next *
 				 * level. leaf or next index could be there */
-    unsigned int	ei_leaf_hi;	/* high 16 bits of physical block */
-    unsigned int	ei_unused;
+    uint16_t	ei_leaf_hi;	/* high 16 bits of physical block */
+    uint16_t	ei_unused;
 }__attribute__((packed));
 
 /*
  * Each block (leaves and indexes), even inode-stored has header.
  */
 struct ext4_extent_header {
-    unsigned int	eh_magic;	/* probably will support different formats */
-    unsigned int	eh_entries;	/* number of valid entries */
-    unsigned int	eh_max;		/* capacity of store in entries */
-    unsigned int	eh_depth;	/* has tree real underlying blocks? */
-    unsigned long	eh_generation;	/* generation of the tree */
+    uint16_t	eh_magic;	/* probably will support different formats */
+    uint16_t	eh_entries;	/* number of valid entries */
+    uint16_t	eh_max;		/* capacity of store in entries */
+    uint16_t	eh_depth;	/* has tree real underlying blocks? */
+    uint32_t	eh_generation;	/* generation of the tree */
+}__attribute__((packed));
+
+//Directory entries
+struct ext4_dir_entry_2 {
+    uint32_t inode;
+    uint16_t rec_len;
+    uint8_t name_len;
+    uint8_t file_type;
+    char * name;
 }__attribute__((packed));
 
 //Ext4 inode metadata
@@ -307,4 +323,10 @@ typedef struct dir_entry{
     unsigned short date_created;
     unsigned short isLongSpecialFilename;
 } __attribute__((packed)) dir_entry_aux;
+
+struct FileMetaData {
+    uint64_t size;
+    char createdAt[MAX_DATE];
+};
+
 #endif //PRACTICA_SOA_TYPES_H

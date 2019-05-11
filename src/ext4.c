@@ -1,4 +1,5 @@
 #include "ext4.h"
+#include <stdint.h>
 
 //Date utils
 #define DATE_INFO "%s: %s"
@@ -7,6 +8,13 @@
 #define LAST_WRITTEN "Last written"
 
 void getDate(int secs, char * dateType, char * msg);
+uint16_t getInodeSize(int fd);
+uint64_t getInodeOffset(int fd);
+uint32_t findFileInode(int fd, char * filename, uint64_t offset, uint16_t blockSize, int typed);
+uint32_t checkFileExistance(int fd, char * filename, uint64_t offset, uint16_t blockSize) {
+    return 0;
+}
+uint32_t checkFileExistance2(int fd, char * filename, uint64_t offset, uint16_t blockSize);
 
 void EXT4_showFileSystemInfo(int fd){
     
@@ -58,41 +66,178 @@ void EXT4_showFileMetadata(int fd, char *filename) {
 
     //Get block group descriptor
     int blockSize = (int) pow(2, 10 + sb.s_log_block_size);
+    int groupOffset = sb.s_first_data_block == 1 ? blockSize * 2 : blockSize;
     struct ext4_group_desc groupDesc;
-    lseek(fd, blockSize == 1024 ? blockSize * 2 : blockSize, SEEK_SET);
+    lseek(fd, groupOffset, SEEK_SET);
     read(fd, &groupDesc, sizeof(struct ext4_group_desc));
 
-    //Get total inodes
-    int inodeCount = sb.s_inodes_per_group;
-    if(sb.s_feature_incompat & LONG_FEATURE_MASK) {
-        inodeCount -= ((int) groupDesc.bg_itable_unused_hi << 16 | groupDesc.bg_itable_unused);
+    //Get offsets
+    uint64_t inodeInit = getInodeOffset(fd);
+    int rootOffset = sb.s_inode_size;
+
+    //Get root inode
+    lseek(fd, inodeInit + rootOffset, SEEK_SET);
+    struct ext4_inode rootInode;
+    read(fd, &rootInode, sizeof(struct ext4_inode));
+
+    //Jump to extent
+    uint64_t extentOffset = inodeInit + rootOffset + EXT_HEADER_OFFSET;
+    lseek(fd, extentOffset, SEEK_SET);
+
+    //Navigate root
+    uint32_t fileInode = findFileInode(fd, filename, extentOffset, blockSize, sb.s_feature_incompat & EXT_DIR_ENTRY);
+
+    //Check if file was found
+    if(fileInode != 0) {
+        printf("%d -> File found", fileInode);
+        //TODO: File found
     } else {
-        inodeCount -= groupDesc.bg_itable_unused;
+        printf("File not found");
+        //TODO: File not found
     }
+
+}
+
+uint64_t getInodeOffset(int fd) {
+
+    //Get super block
+    lseek(fd, SUPER_BLOCK_OFFSET, SEEK_SET);
+    struct ext_super_block sb;
+    read(fd, &sb, sizeof(struct ext_super_block));
+
+    //Get block group descriptor
+    int blockSize = (int) pow(2, 10 + sb.s_log_block_size);
+    int groupOffset = sb.s_first_data_block == 1 ? blockSize * 2 : blockSize;
+    struct ext4_group_desc groupDesc;
+    lseek(fd, groupOffset, SEEK_SET);
+    read(fd, &groupDesc, sizeof(struct ext4_group_desc));
 
     //Get inode table location
     long long inodeTableBlock;
     if(sb.s_feature_incompat & LONG_FEATURE_MASK) {
-        inodeTableBlock = ((long long) groupDesc.bg_inode_table_hi << 32 | (long) groupDesc.bg_inode_table_lo);
+        inodeTableBlock = ((long long) groupDesc.bg_inode_table_hi << 32 | groupDesc.bg_inode_table_lo);
     } else {
-        inodeTableBlock = (long) groupDesc.bg_inode_table_lo;
+        inodeTableBlock = groupDesc.bg_inode_table_lo;
     }
 
-    //Get root inode
-    struct ext4_inode rootInode;
-    int offset = inodeTableBlock * blockSize;
-    lseek(fd, offset + sizeof(struct ext4_inode), SEEK_SET);
-    read(fd, &rootInode, sizeof(struct ext4_inode));
+    return inodeTableBlock * blockSize;
 
-    //Get extent header
+}
+
+uint16_t getInodeSize(int fd) {
+
+    //Get super block
+    lseek(fd, SUPER_BLOCK_OFFSET, SEEK_SET);
+    struct ext_super_block sb;
+    read(fd, &sb, sizeof(struct ext_super_block));
+
+    //Get block size
+    return sb.s_inode_size;
+
+}
+
+uint32_t findFileInode(int fd, char * filename, uint64_t offset, uint16_t blockSize, int typed) {
+
+    //Get header
     struct ext4_extent_header header;
-    header.eh_magic = (rootInode.i_block[12] >> 16) & 0xFF;
-    header.eh_entries = rootInode.i_block[12] & 0xFF;
-    header.eh_max = (rootInode.i_block[13] >> 16) & 0xFF;
-    header.eh_depth = rootInode.i_block[13] & 0xFF;
-    header.eh_generation = rootInode.i_block[14];
+    lseek(fd, offset, SEEK_SET);
+    read(fd, &header, sizeof(struct ext4_extent_header));
 
-    return;
+    //Get file inode
+    uint32_t fileInode;
+    if(header.eh_depth == 0) {
+        for(int i = 0; i < header.eh_entries; i++) {
+
+            //Get leaf
+            struct ext4_extent leaf;
+            lseek(fd, offset + (i + 1) * EXT_NODE_OFFSET, SEEK_SET);
+            read(fd, &leaf, sizeof(struct ext4_extent));
+
+            //Go to data offset
+            uint64_t dataOffset = (leaf.ee_start_hi << 32) | leaf.ee_start_lo;
+            dataOffset *= blockSize;
+
+            //Get inode
+            fileInode = typed != 0 ? checkFileExistance2(fd, filename, dataOffset, blockSize) : checkFileExistance(fd, filename, dataOffset, blockSize);
+            if(fileInode != 0) {
+                return fileInode;
+            }
+
+        }
+    } else {
+        for(int i = 0; i < header.eh_entries; i++) {
+
+            //Get node
+            struct ext4_extent_idx node;
+            lseek(fd, offset + (i + 1) * EXT_NODE_OFFSET, SEEK_SET);
+            read(fd, &node, sizeof(struct ext4_extent_idx));
+
+            //Get new header
+            uint64_t nodeOffset = (node.ei_leaf_hi << 32) | node.ei_leaf_lo;
+            nodeOffset *= blockSize;
+
+            //Find file
+            fileInode = findFileInode(fd, filename, nodeOffset, blockSize, typed);
+            if(fileInode != 0) {
+                return fileInode;
+            }
+
+        }
+    }
+
+    return 0;
+
+}
+
+uint32_t checkFileExistance2(int fd, char * filename, uint64_t offset, uint16_t blockSize) {
+
+    struct ext4_dir_entry_2 dirEntry;
+
+    //Directory loop
+    uint16_t curSize = 0;
+    while(curSize < blockSize) {
+
+        //Get directory entry
+        lseek(fd, offset + curSize, SEEK_SET);
+        read(fd, &dirEntry, sizeof(struct ext4_dir_entry_2) - sizeof(char *));
+
+        //Get dir name
+        dirEntry.name = (char *) malloc(sizeof(char) * dirEntry.name_len + sizeof(char));
+        if(dirEntry.name != NULL) {
+
+            //Read name
+            read(fd, dirEntry.name, sizeof(char) * dirEntry.name_len);
+            dirEntry.name[dirEntry.name_len] = '\0';
+
+            //Check inode 0
+            if(dirEntry.inode == 0) {
+                return 0;
+            }
+
+            //Compare to target
+            if(dirEntry.file_type & FILE_FLAG_MASK && strcmp(dirEntry.name, filename) == 0) {
+                free(dirEntry.name);
+                return dirEntry.inode;
+            } else {
+                if(dirEntry.file_type & DIR_FLAG_MASK && strcmp(dirEntry.name, ".") != 0 && strcmp(dirEntry.name, "..") != 0) {
+                    free(dirEntry.name);
+                    uint32_t fileInode = findFileInode(fd, filename, getInodeOffset(fd) + (dirEntry.inode - 1) * getInodeSize(fd) + EXT_HEADER_OFFSET, blockSize, 1);
+                    if(fileInode != 0) {
+                        return fileInode;
+                    }
+                } else {
+                    free(dirEntry.name);
+                }
+            }
+
+        }
+
+        //Increase size
+        curSize += dirEntry.rec_len;
+
+    }
+
+    return 0;
 
 }
 
