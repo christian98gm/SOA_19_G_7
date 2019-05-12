@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
+stdint.h
+-
+time.h
+-
+string.h
+-
+stdio.h
+-
+
 C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.c
 ext4.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.h
@@ -29,6 +39,16 @@ types.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/types.h
 view.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/view.h
+date.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
+
+C:/Users/christian/Desktop/SOA_19_G_7/src/ext4struct.h
+stdint.h
+-
+math.h
+-
+date.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
 
 C:/Users/christian/Desktop/SOA_19_G_7/src/fat32.h
 unistd.h
@@ -71,4 +91,8 @@ types.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/types.h
 identifier.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/identifier.h
+date.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
+ext4struct.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/ext4struct.h
 

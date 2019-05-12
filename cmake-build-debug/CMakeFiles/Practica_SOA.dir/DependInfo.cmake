@@ -5,8 +5,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/christian/Desktop/SOA_19_G_7/src/argval.c" "C:/Users/christian/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/Practica_SOA.dir/src/argval.c.obj"
+  "C:/Users/christian/Desktop/SOA_19_G_7/src/date.c" "C:/Users/christian/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/Practica_SOA.dir/src/date.c.obj"
   "C:/Users/christian/Desktop/SOA_19_G_7/src/endian.c" "C:/Users/christian/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/Practica_SOA.dir/src/endian.c.obj"
   "C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.c" "C:/Users/christian/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/Practica_SOA.dir/src/ext4.c.obj"
+  "C:/Users/christian/Desktop/SOA_19_G_7/src/ext4struct.c" "C:/Users/christian/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/Practica_SOA.dir/src/ext4struct.c.obj"
   "C:/Users/christian/Desktop/SOA_19_G_7/src/fat32.c" "C:/Users/christian/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/Practica_SOA.dir/src/fat32.c.obj"
   "C:/Users/christian/Desktop/SOA_19_G_7/src/identifier.c" "C:/Users/christian/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/Practica_SOA.dir/src/identifier.c.obj"
   "C:/Users/christian/Desktop/SOA_19_G_7/src/main.c" "C:/Users/christian/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/Practica_SOA.dir/src/main.c.obj"

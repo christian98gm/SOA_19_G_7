@@ -149,6 +149,33 @@ src/argval.c.s:
 	$(MAKE) -f CMakeFiles\Practica_SOA.dir\build.make CMakeFiles/Practica_SOA.dir/src/argval.c.s
 .PHONY : src/argval.c.s
 
+src/date.obj: src/date.c.obj
+
+.PHONY : src/date.obj
+
+# target to build an object file
+src/date.c.obj:
+	$(MAKE) -f CMakeFiles\Practica_SOA.dir\build.make CMakeFiles/Practica_SOA.dir/src/date.c.obj
+.PHONY : src/date.c.obj
+
+src/date.i: src/date.c.i
+
+.PHONY : src/date.i
+
+# target to preprocess a source file
+src/date.c.i:
+	$(MAKE) -f CMakeFiles\Practica_SOA.dir\build.make CMakeFiles/Practica_SOA.dir/src/date.c.i
+.PHONY : src/date.c.i
+
+src/date.s: src/date.c.s
+
+.PHONY : src/date.s
+
+# target to generate assembly for a file
+src/date.c.s:
+	$(MAKE) -f CMakeFiles\Practica_SOA.dir\build.make CMakeFiles/Practica_SOA.dir/src/date.c.s
+.PHONY : src/date.c.s
+
 src/endian.obj: src/endian.c.obj
 
 .PHONY : src/endian.obj
@@ -202,6 +229,33 @@ src/ext4.s: src/ext4.c.s
 src/ext4.c.s:
 	$(MAKE) -f CMakeFiles\Practica_SOA.dir\build.make CMakeFiles/Practica_SOA.dir/src/ext4.c.s
 .PHONY : src/ext4.c.s
+
+src/ext4struct.obj: src/ext4struct.c.obj
+
+.PHONY : src/ext4struct.obj
+
+# target to build an object file
+src/ext4struct.c.obj:
+	$(MAKE) -f CMakeFiles\Practica_SOA.dir\build.make CMakeFiles/Practica_SOA.dir/src/ext4struct.c.obj
+.PHONY : src/ext4struct.c.obj
+
+src/ext4struct.i: src/ext4struct.c.i
+
+.PHONY : src/ext4struct.i
+
+# target to preprocess a source file
+src/ext4struct.c.i:
+	$(MAKE) -f CMakeFiles\Practica_SOA.dir\build.make CMakeFiles/Practica_SOA.dir/src/ext4struct.c.i
+.PHONY : src/ext4struct.c.i
+
+src/ext4struct.s: src/ext4struct.c.s
+
+.PHONY : src/ext4struct.s
+
+# target to generate assembly for a file
+src/ext4struct.c.s:
+	$(MAKE) -f CMakeFiles\Practica_SOA.dir\build.make CMakeFiles/Practica_SOA.dir/src/ext4struct.c.s
+.PHONY : src/ext4struct.c.s
 
 src/fat32.obj: src/fat32.c.obj
 
@@ -323,12 +377,18 @@ help:
 	@echo ... src/argval.obj
 	@echo ... src/argval.i
 	@echo ... src/argval.s
+	@echo ... src/date.obj
+	@echo ... src/date.i
+	@echo ... src/date.s
 	@echo ... src/endian.obj
 	@echo ... src/endian.i
 	@echo ... src/endian.s
 	@echo ... src/ext4.obj
 	@echo ... src/ext4.i
 	@echo ... src/ext4.s
+	@echo ... src/ext4struct.obj
+	@echo ... src/ext4struct.i
+	@echo ... src/ext4struct.s
 	@echo ... src/fat32.obj
 	@echo ... src/fat32.i
 	@echo ... src/fat32.s

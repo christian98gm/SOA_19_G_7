@@ -6,6 +6,8 @@
 
 #include "types.h"
 #include "identifier.h"
+#include "date.h"
+#include "ext4struct.h"
 
 //Argument messages
 #define UNDEFINED_OPERATION "Operation [%s] could not be recognized. It must be one of the following: -info | -search | -show\n"
@@ -20,6 +22,9 @@
 #define BLOCK_INFO "BLOCK INFO\nBlock Size: %d\nReserved Blocks: %ld\nFree Blocks: %ld\nTotal Blocks: %ld\nFirst Block: %d\nBlock Group: %d\nFrags Group: %d\n\n"
 #define VOLUME_INFO "VOLUME INFO\nVolume name: %s\n"
 #define FAT_INFO "System Name: %s\nSector Size: %u\nSectors per Cluster: %u\nReserved Sectors: %u\nNumber of FATs: %u\nMaximum Root Entries: %u\nSectors per FAT: %u\nLabel: %s\n\n"
+#define LAST_CHECK "Last check: %s"
+#define LAST_MOUNT "Last mount: %s"
+#define LAST_WRITTEN "Last written: %s"
 
 //Filesystem file search
 #define FILE_NOT_FOUND "Error. File not found.\n"
@@ -29,9 +34,10 @@
 #define START_FILE "\n---------------------START_FILE----------------------\n"
 #define END_FILE "\n---------------------END_FILE----------------------\n"
 
+//File metadata
 struct FileMetaData {
     uint64_t size;
-    char createdAt[MAX_DATE];
+    char createdAt[MAX_DATE_STRING];
 };
 
 void VIEW_undefinedOperation(char * operation);

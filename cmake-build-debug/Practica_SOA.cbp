@@ -80,6 +80,12 @@
 		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/argval.h">
 			<Option target="Practica_SOA"/>
 		</Unit>
+		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/date.c">
+			<Option target="Practica_SOA"/>
+		</Unit>
+		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/date.h">
+			<Option target="Practica_SOA"/>
+		</Unit>
 		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/endian.c">
 			<Option target="Practica_SOA"/>
 		</Unit>
@@ -90,6 +96,12 @@
 			<Option target="Practica_SOA"/>
 		</Unit>
 		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.h">
+			<Option target="Practica_SOA"/>
+		</Unit>
+		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/ext4struct.c">
+			<Option target="Practica_SOA"/>
+		</Unit>
+		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/ext4struct.h">
 			<Option target="Practica_SOA"/>
 		</Unit>
 		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/fat32.c">

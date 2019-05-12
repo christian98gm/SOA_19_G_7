@@ -1,14 +1,5 @@
 #include "ext4.h"
 
-//Date utils
-#define DATE_INFO "%s: %s"
-#define NUMERIC_DATE "%.2d/%.2d/%.4d"
-#define LAST_CHECK "Last check"
-#define LAST_MOUNT "Last mount"
-#define LAST_WRITTEN "Last written"
-
-void getDate(int secs, char * dateType, char * msg);
-void getNumericDate(int secs, char * msg);
 uint16_t getInodeSize(int fd);
 uint64_t getInodeOffset(int fd);
 uint32_t findFileInode(int fd, char * filename, uint64_t offset, uint16_t blockSize, int typed);
@@ -26,37 +17,8 @@ void EXT4_showFileSystemInfo(int fd){
     struct ext_super_block sb;
     read(fd, &sb, sizeof(struct ext_super_block));
  
-	//Get inode info
-	struct Ext4MetaData metadata;
-	metadata.inode.inodeSize = sb.s_inode_size;
-	metadata.inode.totalInodes = sb.s_inodes_count;
-	metadata.inode.firstInode = sb.s_first_ino;
-	metadata.inode.inodesGroup = sb.s_inodes_per_group;
-	metadata.inode.freeInodes = sb.s_free_inodes_count;
-	
-	//Get block info
-	metadata.block.blockSize = pow(2, 10 + sb.s_log_block_size);
-	if(sb.s_feature_incompat & LONG_FEATURE_MASK) {
-		metadata.block.reservedBlocks = (long long) sb.s_r_blocks_count_hi << 32 | (long) sb.s_r_blocks_count_lo;
-		metadata.block.freeBlocks = (long long) sb.s_free_blocks_count_hi << 32 | (long) sb.s_free_blocks_count_lo;
-		metadata.block.totalBlocks = (long long) sb.s_blocks_count_hi << 32 | (long) sb.s_blocks_count_lo;
-	} else {
-		metadata.block.reservedBlocks = (long) sb.s_r_blocks_count_lo;
-		metadata.block.freeBlocks = (long) sb.s_free_blocks_count_lo;
-		metadata.block.totalBlocks = (long) sb.s_blocks_count_lo;
-	}
-	metadata.block.firstBlock = sb.s_first_data_block;
-	metadata.block.blockGroup = sb.s_blocks_per_group;
-	metadata.block.fragsGroup = sb.s_clusters_per_group;
-	
-	//Get volume info
-	strcpy(metadata.volume.volumeName, sb.s_volume_name);
-	getDate(sb.s_lastcheck, LAST_CHECK, metadata.volume.lastCheck);
-	getDate(sb.s_mtime, LAST_MOUNT, metadata.volume.lastMount);
-	getDate(sb.s_wtime, LAST_WRITTEN, metadata.volume.lastWritten);
-	
-	//Show info
-	VIEW_showExt4MetaData(metadata);
+	//Get inode info and show it
+	VIEW_showExt4MetaData(EXT4S_getMetaData(sb));
 	
 }
 
@@ -153,19 +115,8 @@ struct FileMetaData getInodeMetaData(int fd, uint32_t fileInode) {
     //Get data
     struct FileMetaData fileMetaData;
     fileMetaData.size = (inode.i_size_high << 32) | inode.i_size_lo;
-    getNumericDate(inode.i_crtime, fileMetaData.createdAt);
+    DATE_getShortDate(inode.i_crtime, fileMetaData.createdAt);
     return fileMetaData;
-
-}
-
-void getNumericDate(int secs, char * msg) {
-
-    //Get time
-    time_t t = secs;
-    struct tm * time = localtime(&t);
-
-    //Get numeric date
-    sprintf(msg, NUMERIC_DATE, time->tm_mday, (time->tm_mon + 1), (time->tm_year + 1900));
 
 }
 
@@ -232,39 +183,24 @@ uint32_t checkFileExistance2(int fd, char * filename, uint64_t offset, uint16_t 
 
         //Get directory entry
         lseek(fd, offset + curSize, SEEK_SET);
-        read(fd, &dirEntry, sizeof(struct ext4_dir_entry_2) - sizeof(char *));
+        read(fd, &dirEntry, sizeof(struct ext4_dir_entry_2));
+        dirEntry.name[dirEntry.name_len] = '\0';
 
-        //Get dir name
-        int length = __min(dirEntry.name_len, MAX_ENTRY_NAME);
-        dirEntry.name = (char *) malloc(sizeof(char) * (length + 1));
-        if(dirEntry.name != NULL) {
+        //Check inode 0
+        if(dirEntry.inode == 0) {
+            return 0;
+        }
 
-            //Read name
-            lseek(fd, offset + curSize + 8, SEEK_SET);
-            read(fd, dirEntry.name, length);
-            dirEntry.name[length] = '\0';
-
-            //Check inode 0
-            if(dirEntry.inode == 0) {
-                return 0;
-            }
-
-            //Compare to target
-            if(dirEntry.file_type & FILE_FLAG_MASK && strcmp(dirEntry.name, filename) == 0) {
-                free(dirEntry.name);
-                return dirEntry.inode;
-            } else {
-                if(dirEntry.file_type & DIR_FLAG_MASK && strcmp(dirEntry.name, ".") != 0 && strcmp(dirEntry.name, "..") != 0) {
-                    free(dirEntry.name);
-                    uint32_t fileInode = findFileInode(fd, filename, getInodeOffset(fd) + (dirEntry.inode - 1) * getInodeSize(fd) + EXT_HEADER_OFFSET, blockSize, 1);
-                    if(fileInode != 0) {
-                        return fileInode;
-                    }
-                } else {
-                    free(dirEntry.name);
+        //Compare to target
+        if(dirEntry.file_type & FILE_FLAG_MASK && strcmp(dirEntry.name, filename) == 0) {
+            return dirEntry.inode;
+        } else {
+            if(dirEntry.file_type & DIR_FLAG_MASK && strcmp(dirEntry.name, ".") != 0 && strcmp(dirEntry.name, "..") != 0) {
+                uint32_t fileInode = findFileInode(fd, filename, getInodeOffset(fd) + (dirEntry.inode - 1) * getInodeSize(fd) + EXT_HEADER_OFFSET, blockSize, 1);
+                if(fileInode != 0) {
+                    return fileInode;
                 }
             }
-
         }
 
         //Increase size
@@ -278,15 +214,4 @@ uint32_t checkFileExistance2(int fd, char * filename, uint64_t offset, uint16_t 
 
 void EXT4_showFileInfo(int fd, char *filename) {
 
-}
-
-void getDate(int secs, char * dateType, char * msg) {
-
-	//Get time
-	time_t t = secs;
-	struct tm * time = localtime(&t);
-	
-	//Get date
-	sprintf(msg, DATE_INFO, dateType, asctime(time));
-	
 }

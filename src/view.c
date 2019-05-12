@@ -23,9 +23,9 @@ void VIEW_showExt4MetaData(struct Ext4MetaData metadata) {
 	printf(INODE_INFO, metadata.inode.inodeSize, metadata.inode.totalInodes, metadata.inode.firstInode, metadata.inode.inodesGroup, metadata.inode.freeInodes);
 	printf(BLOCK_INFO, (int) metadata.block.blockSize, metadata.block.reservedBlocks, metadata.block.freeBlocks, metadata.block.totalBlocks, metadata.block.firstBlock, metadata.block.blockGroup, metadata.block.fragsGroup);
 	printf(VOLUME_INFO, metadata.volume.volumeName);
-	printf("%s", metadata.volume.lastCheck);
-	printf("%s", metadata.volume.lastMount);
-	printf("%s\n", metadata.volume.lastWritten);
+	printf(LAST_CHECK, metadata.volume.lastCheck);
+	printf(LAST_MOUNT, metadata.volume.lastMount);
+	printf(LAST_WRITTEN, metadata.volume.lastWritten);
 }
 
 void VIEW_showFat32MetaData(struct fat_BS fat_boot, struct fat_extBS_32 fat_boot_ext_32) {
