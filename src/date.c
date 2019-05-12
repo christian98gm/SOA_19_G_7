@@ -1,5 +1,9 @@
 #include "date.h"
 
+/**
+ * FUNCTIONS
+ **/
+
 void DATE_getShortDate(uint32_t secs, char * msg) {
 
     //Get time

@@ -134,22 +134,9 @@ CMakeFiles/Practica_SOA.dir/src/view.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/view.c.s"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\christian\Desktop\SOA_19_G_7\src\view.c -o CMakeFiles\Practica_SOA.dir\src\view.c.s
 
-CMakeFiles/Practica_SOA.dir/src/endian.c.obj: CMakeFiles/Practica_SOA.dir/flags.make
-CMakeFiles/Practica_SOA.dir/src/endian.c.obj: ../src/endian.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\christian\Desktop\SOA_19_G_7\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/Practica_SOA.dir/src/endian.c.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Practica_SOA.dir\src\endian.c.obj   -c C:\Users\christian\Desktop\SOA_19_G_7\src\endian.c
-
-CMakeFiles/Practica_SOA.dir/src/endian.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Practica_SOA.dir/src/endian.c.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\christian\Desktop\SOA_19_G_7\src\endian.c > CMakeFiles\Practica_SOA.dir\src\endian.c.i
-
-CMakeFiles/Practica_SOA.dir/src/endian.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/endian.c.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\christian\Desktop\SOA_19_G_7\src\endian.c -o CMakeFiles\Practica_SOA.dir\src\endian.c.s
-
 CMakeFiles/Practica_SOA.dir/src/date.c.obj: CMakeFiles/Practica_SOA.dir/flags.make
 CMakeFiles/Practica_SOA.dir/src/date.c.obj: ../src/date.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\christian\Desktop\SOA_19_G_7\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/Practica_SOA.dir/src/date.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\christian\Desktop\SOA_19_G_7\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/Practica_SOA.dir/src/date.c.obj"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Practica_SOA.dir\src\date.c.obj   -c C:\Users\christian\Desktop\SOA_19_G_7\src\date.c
 
 CMakeFiles/Practica_SOA.dir/src/date.c.i: cmake_force
@@ -160,19 +147,6 @@ CMakeFiles/Practica_SOA.dir/src/date.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/date.c.s"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\christian\Desktop\SOA_19_G_7\src\date.c -o CMakeFiles\Practica_SOA.dir\src\date.c.s
 
-CMakeFiles/Practica_SOA.dir/src/ext4struct.c.obj: CMakeFiles/Practica_SOA.dir/flags.make
-CMakeFiles/Practica_SOA.dir/src/ext4struct.c.obj: ../src/ext4struct.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\christian\Desktop\SOA_19_G_7\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/Practica_SOA.dir/src/ext4struct.c.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Practica_SOA.dir\src\ext4struct.c.obj   -c C:\Users\christian\Desktop\SOA_19_G_7\src\ext4struct.c
-
-CMakeFiles/Practica_SOA.dir/src/ext4struct.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Practica_SOA.dir/src/ext4struct.c.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\christian\Desktop\SOA_19_G_7\src\ext4struct.c > CMakeFiles\Practica_SOA.dir\src\ext4struct.c.i
-
-CMakeFiles/Practica_SOA.dir/src/ext4struct.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/ext4struct.c.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\christian\Desktop\SOA_19_G_7\src\ext4struct.c -o CMakeFiles\Practica_SOA.dir\src\ext4struct.c.s
-
 # Object files for target Practica_SOA
 Practica_SOA_OBJECTS = \
 "CMakeFiles/Practica_SOA.dir/src/main.c.obj" \
@@ -181,9 +155,7 @@ Practica_SOA_OBJECTS = \
 "CMakeFiles/Practica_SOA.dir/src/ext4.c.obj" \
 "CMakeFiles/Practica_SOA.dir/src/identifier.c.obj" \
 "CMakeFiles/Practica_SOA.dir/src/view.c.obj" \
-"CMakeFiles/Practica_SOA.dir/src/endian.c.obj" \
-"CMakeFiles/Practica_SOA.dir/src/date.c.obj" \
-"CMakeFiles/Practica_SOA.dir/src/ext4struct.c.obj"
+"CMakeFiles/Practica_SOA.dir/src/date.c.obj"
 
 # External object files for target Practica_SOA
 Practica_SOA_EXTERNAL_OBJECTS =
@@ -194,14 +166,12 @@ Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/src/fat32.c.obj
 Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/src/ext4.c.obj
 Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/src/identifier.c.obj
 Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/src/view.c.obj
-Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/src/endian.c.obj
 Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/src/date.c.obj
-Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/src/ext4struct.c.obj
 Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/build.make
 Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/linklibs.rsp
 Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/objects1.rsp
 Practica_SOA.exe: CMakeFiles/Practica_SOA.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\christian\Desktop\SOA_19_G_7\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable Practica_SOA.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\christian\Desktop\SOA_19_G_7\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable Practica_SOA.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Practica_SOA.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

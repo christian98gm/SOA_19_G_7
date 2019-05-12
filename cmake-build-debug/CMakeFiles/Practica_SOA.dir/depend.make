@@ -4,65 +4,51 @@
 CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/argval.c
 CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/argval.h
 CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/date.h
-CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/ext4.h
-CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/ext4struct.h
-CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/fat32.h
-CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/identifier.h
+CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/ext4types.h
+CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/fat32types.h
 CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/types.h
 CMakeFiles/Practica_SOA.dir/src/argval.c.obj: ../src/view.h
 
 CMakeFiles/Practica_SOA.dir/src/date.c.obj: ../src/date.c
 CMakeFiles/Practica_SOA.dir/src/date.c.obj: ../src/date.h
 
-CMakeFiles/Practica_SOA.dir/src/endian.c.obj: ../src/endian.c
-CMakeFiles/Practica_SOA.dir/src/endian.c.obj: ../src/endian.h
-
 CMakeFiles/Practica_SOA.dir/src/ext4.c.obj: ../src/date.h
 CMakeFiles/Practica_SOA.dir/src/ext4.c.obj: ../src/ext4.c
 CMakeFiles/Practica_SOA.dir/src/ext4.c.obj: ../src/ext4.h
-CMakeFiles/Practica_SOA.dir/src/ext4.c.obj: ../src/ext4struct.h
-CMakeFiles/Practica_SOA.dir/src/ext4.c.obj: ../src/fat32.h
-CMakeFiles/Practica_SOA.dir/src/ext4.c.obj: ../src/identifier.h
+CMakeFiles/Practica_SOA.dir/src/ext4.c.obj: ../src/ext4types.h
+CMakeFiles/Practica_SOA.dir/src/ext4.c.obj: ../src/fat32types.h
 CMakeFiles/Practica_SOA.dir/src/ext4.c.obj: ../src/types.h
 CMakeFiles/Practica_SOA.dir/src/ext4.c.obj: ../src/view.h
 
-CMakeFiles/Practica_SOA.dir/src/ext4struct.c.obj: ../src/date.h
-CMakeFiles/Practica_SOA.dir/src/ext4struct.c.obj: ../src/ext4struct.c
-CMakeFiles/Practica_SOA.dir/src/ext4struct.c.obj: ../src/ext4struct.h
-
 CMakeFiles/Practica_SOA.dir/src/fat32.c.obj: ../src/date.h
-CMakeFiles/Practica_SOA.dir/src/fat32.c.obj: ../src/ext4.h
-CMakeFiles/Practica_SOA.dir/src/fat32.c.obj: ../src/ext4struct.h
+CMakeFiles/Practica_SOA.dir/src/fat32.c.obj: ../src/ext4types.h
 CMakeFiles/Practica_SOA.dir/src/fat32.c.obj: ../src/fat32.c
 CMakeFiles/Practica_SOA.dir/src/fat32.c.obj: ../src/fat32.h
-CMakeFiles/Practica_SOA.dir/src/fat32.c.obj: ../src/identifier.h
+CMakeFiles/Practica_SOA.dir/src/fat32.c.obj: ../src/fat32types.h
 CMakeFiles/Practica_SOA.dir/src/fat32.c.obj: ../src/types.h
 CMakeFiles/Practica_SOA.dir/src/fat32.c.obj: ../src/view.h
 
 CMakeFiles/Practica_SOA.dir/src/identifier.c.obj: ../src/date.h
-CMakeFiles/Practica_SOA.dir/src/identifier.c.obj: ../src/ext4.h
-CMakeFiles/Practica_SOA.dir/src/identifier.c.obj: ../src/ext4struct.h
-CMakeFiles/Practica_SOA.dir/src/identifier.c.obj: ../src/fat32.h
+CMakeFiles/Practica_SOA.dir/src/identifier.c.obj: ../src/ext4types.h
+CMakeFiles/Practica_SOA.dir/src/identifier.c.obj: ../src/fat32types.h
 CMakeFiles/Practica_SOA.dir/src/identifier.c.obj: ../src/identifier.c
 CMakeFiles/Practica_SOA.dir/src/identifier.c.obj: ../src/identifier.h
 CMakeFiles/Practica_SOA.dir/src/identifier.c.obj: ../src/types.h
-CMakeFiles/Practica_SOA.dir/src/identifier.c.obj: ../src/view.h
 
 CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/argval.h
 CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/date.h
 CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/ext4.h
-CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/ext4struct.h
+CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/ext4types.h
 CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/fat32.h
+CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/fat32types.h
 CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/identifier.h
 CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/main.c
 CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/types.h
 CMakeFiles/Practica_SOA.dir/src/main.c.obj: ../src/view.h
 
 CMakeFiles/Practica_SOA.dir/src/view.c.obj: ../src/date.h
-CMakeFiles/Practica_SOA.dir/src/view.c.obj: ../src/ext4.h
-CMakeFiles/Practica_SOA.dir/src/view.c.obj: ../src/ext4struct.h
-CMakeFiles/Practica_SOA.dir/src/view.c.obj: ../src/fat32.h
-CMakeFiles/Practica_SOA.dir/src/view.c.obj: ../src/identifier.h
+CMakeFiles/Practica_SOA.dir/src/view.c.obj: ../src/ext4types.h
+CMakeFiles/Practica_SOA.dir/src/view.c.obj: ../src/fat32types.h
 CMakeFiles/Practica_SOA.dir/src/view.c.obj: ../src/types.h
 CMakeFiles/Practica_SOA.dir/src/view.c.obj: ../src/view.c
 CMakeFiles/Practica_SOA.dir/src/view.c.obj: ../src/view.h

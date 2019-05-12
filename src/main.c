@@ -1,19 +1,31 @@
 #include <fcntl.h>
 
 #include "argval.h"
-#include "view.h"
 #include "identifier.h"
+#include "ext4.h"
+#include "fat32.h"
+#include "view.h"
+
+/**
+ * CONSTANTS
+ **/
 
 #define FILES_PATH "./files/"
-#define MAX_PATH 64
+#define MAX_PATH 128
+
+/**
+ * MAIN
+ **/
 
 int main(int argc, char * argv[]) {
+
 	//Check args
 	int operation = ARGVAL_validate(argc, argv);
     if(!operation) {
 		return 1;
 	}
 
+    //CLION dir redirect
     chdir("/Users/christian/Desktop/SOA_19_G_7");
 
 	//Get volume full path
@@ -56,7 +68,7 @@ int main(int argc, char * argv[]) {
 		    if(type == FAT32_FS) {
                 FAT32_showFileInfo(fd, argv[3]);
             } else {
-                EXT4_showFileInfo(fd, argv[3]);
+                //EXT4_showFileInfo(fd, argv[3]);
 		    }
 			break;
 	}

@@ -1,5 +1,9 @@
 #include "argval.h"
 
+/**
+ * FUNCTIONS
+ **/
+
 int ARGVAL_validate(int argc, char * argv[]) {
 	
 	switch(argc) {

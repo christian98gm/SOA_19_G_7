@@ -1,12 +1,17 @@
 #ifndef PRACTICA_SOA_IDENTIFIER_H
 #define PRACTICA_SOA_IDENTIFIER_H
 
-#include <stdio.h>
 #include <unistd.h>
+#include <stdio.h>
+#include <stdint.h>
 
+#include "ext4types.h"
+#include "fat32types.h"
 #include "types.h"
-#include "ext4.h"
-#include "fat32.h"
+
+/**
+ * CONSTANTS
+ **/
 
 //Filesystem codes
 #define FAT12_FS 0
@@ -15,7 +20,6 @@
 #define EXT2_FS 10
 #define EXT3_FS 11
 #define EXT4_FS 12
-//#define UNDEFINED_FS
 
 //Filesystem names
 #define FAT12_FS_NAME "FAT12"
@@ -25,6 +29,10 @@
 #define EXT3_FS_NAME "EXT3"
 #define EXT4_FS_NAME "EXT4"
 #define UNDEFINED_FS_NAME "UNDEFINED"
+
+/**
+ * FUNCTIONS
+ **/
 
 int FSID_getFileSystemType(int fd);
 

@@ -86,28 +86,22 @@
 		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/date.h">
 			<Option target="Practica_SOA"/>
 		</Unit>
-		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/endian.c">
-			<Option target="Practica_SOA"/>
-		</Unit>
-		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/endian.h">
-			<Option target="Practica_SOA"/>
-		</Unit>
 		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.c">
 			<Option target="Practica_SOA"/>
 		</Unit>
 		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.h">
 			<Option target="Practica_SOA"/>
 		</Unit>
-		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/ext4struct.c">
-			<Option target="Practica_SOA"/>
-		</Unit>
-		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/ext4struct.h">
+		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/ext4types.h">
 			<Option target="Practica_SOA"/>
 		</Unit>
 		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/fat32.c">
 			<Option target="Practica_SOA"/>
 		</Unit>
 		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/fat32.h">
+			<Option target="Practica_SOA"/>
+		</Unit>
+		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/fat32types.h">
 			<Option target="Practica_SOA"/>
 		</Unit>
 		<Unit filename="C:/Users/christian/Desktop/SOA_19_G_7/src/identifier.c">

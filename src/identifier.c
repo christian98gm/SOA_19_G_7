@@ -1,20 +1,29 @@
 #include "identifier.h"
 
-int getFATFileSystemSubType(int fd);
-int getEXTFileSystemSubType(int fd);
+/**
+ * AUX FUNCTIONS HEADER
+ **/
+
+int getExtFileSystemType(int fd);
+
+int getFatFileSystemType(int fd);
+
+/**
+ * FUNCTIONS
+ **/
 
 int FSID_getFileSystemType(int fd){
 	
 	//Look for magic number
+    uint16_t magic_signature;
     lseek(fd, SUPER_BLOCK_OFFSET + MAGIC_NUMBER_OFFSET, SEEK_SET);
-    unsigned short magic_signature;
     read(fd, &magic_signature, sizeof(magic_signature));
 	
 	//Get filesystem type
     if(magic_signature == EXT_MAG_SIGN) {
-		return getEXTFileSystemSubType(fd);
+		return getExtFileSystemType(fd);
 	} else {
-		return getFATFileSystemSubType(fd);
+		return getFatFileSystemType(fd);
     }
 	
 }
@@ -38,20 +47,24 @@ char * FSID_getFileSystemName(int type) {
     }
 }
 
-int getEXTFileSystemSubType(int fd){
-	
-	//Get superblock
-    lseek(fd, SUPER_BLOCK_OFFSET, SEEK_SET);
-    struct ext_super_block superblock;
-    read(fd, &superblock, sizeof(struct ext_super_block));
+/**
+ * AUX FUNCTIONS IMPLEMENTATION
+ **/
 
-	//Check Ext4
-	if(superblock.s_feature_incompat & EXTENT_FEATURE_MASK) {
+int getExtFileSystemType(int fd){
+	
+	//Get super block
+    lseek(fd, SUPER_BLOCK_OFFSET, SEEK_SET);
+    struct ext_super_block sb;
+    read(fd, &sb, sizeof(struct ext_super_block));
+
+	//Check ext4
+	if(sb.s_feature_incompat & EXTENT_FEATURE_MASK) {
 		return EXT4_FS;
 	}
 	
-	//Check Ext3
-	if(superblock.s_feature_compat & JOURNAL_FEATURE_MASK) {
+	//Check ext3
+	if(sb.s_feature_compat & JOURNAL_FEATURE_MASK) {
 		return EXT3_FS;
 	} else {
 		return EXT2_FS;
@@ -59,7 +72,7 @@ int getEXTFileSystemSubType(int fd){
 
 }
 
-int getFATFileSystemSubType(int fd){
+int getFatFileSystemType(int fd){
 	
 	//Go to filesystem start
     lseek(fd, 0, SEEK_SET);

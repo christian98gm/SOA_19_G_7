@@ -6,7 +6,15 @@
 #include <string.h>
 #include <stdio.h>
 
+/**
+ * CONSTANTS
+ **/
+
 #define MAX_DATE_STRING 64
+
+/**
+ * FUNCTIONS
+ **/
 
 void DATE_getShortDate(uint32_t secs, char * date);
 

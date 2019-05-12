@@ -5,6 +5,10 @@
 
 #include "view.h"
 
+/**
+ * CONSTANTS
+ **/
+
 //Operations
 #define GET_INFO "-info"
 #define GET_FILE_METADATA "-search"
@@ -15,6 +19,10 @@
 #define GET_INFO_CODE 1
 #define GET_FILE_METADATA_CODE 2
 #define GET_FILE_INFO_CODE 3
+
+/**
+ * FUNCTIONS
+ **/
 
 int ARGVAL_validate(int argc, char * argv[]);
 

@@ -5,14 +5,19 @@
 #include <stdint.h>
 
 #include "types.h"
-#include "identifier.h"
-#include "date.h"
-#include "ext4struct.h"
+#include "ext4types.h"
+#include "fat32types.h"
+
+/**
+ * CONSTANTS
+ **/
 
 //Argument messages
 #define UNDEFINED_OPERATION "Operation [%s] could not be recognized. It must be one of the following: -info | -search | -show\n"
 #define WRONG_FORMAT "Wrong invocation format!\n"
 #define FORMAT_REMINDER "Remember that the invocation format of the executable must be the following:\n./executable_name <operation> <volume_name> [<filename>]\n"
+
+//Filesystem identify messages
 #define MISSING_FILESYSTEM "Error. Filesystem [%s] not found.\n"
 #define UNDEFINED_FILESYSTEM "Filesystem not recognized (%s)\n"
 
@@ -26,19 +31,19 @@
 #define LAST_MOUNT "Last mount: %s"
 #define LAST_WRITTEN "Last written: %s"
 
-//Filesystem file search
+//File search messages
 #define FILE_NOT_FOUND "Error. File not found.\n"
 #define FILE_FOUND_METADATA "File found! Size: %d bytes. Created on: %hu/%hu/%hu\n"
 #define FILE_FOUND_METADATA_2 "File found! Size: %ld bytes. Created on: %s\n"
+
+//File data messages
 #define FILE_FOUND_CONTENT "\nFile found! Showing content…\n\n"
 #define START_FILE "\n---------------------START_FILE----------------------\n"
 #define END_FILE "\n---------------------END_FILE----------------------\n"
 
-//File metadata
-struct FileMetaData {
-    uint64_t size;
-    char createdAt[MAX_DATE_STRING];
-};
+/**
+ * FUNCTIONS
+ **/
 
 void VIEW_undefinedOperation(char * operation);
 
@@ -52,12 +57,13 @@ void VIEW_showExt4MetaData(struct Ext4MetaData metadata);
 
 void VIEW_showFat32MetaData(struct fat_BS fat_boot, struct fat_extBS_32 fat_boot_ext_32);
 
-void VIEW_showFat32FileMetadata(struct dir_entry *entry, int status);
-
-void VIEW_showFat32FileInfo(char* info);
+void VIEW_fileFound(struct FileMetaData metaData);
 
 void VIEW_fileNotFound();
 
-void VIEW_fileFound(struct FileMetaData metaData);
+void VIEW_showFileInfo(char *info);
+
+//TODO: DELETE
+void VIEW_showFat32FileMetadata(struct dir_entry * entry, int status);
 
 #endif //PRACTICA_SOA_VIEW_H
