@@ -143,7 +143,7 @@ int searchFile(unsigned long cluster, int showFile) {
 
                 parse_dir_entry(entries_cluster[num_entry_directory_in_cluster], &offset, 0, &entry);
                 if((ATTR_DIRECTORY & entry.attributes) != 0 && entry.filename[0] != '.') { //DIRECTORY AND NOW SELF-BACK REFERENCE
-                    if(searchFile(entry.first_cluster, 0)){
+                    if(searchFile(entry.first_cluster, showFile)){
                        free(entry.filename);
                        return 1;
                     }
