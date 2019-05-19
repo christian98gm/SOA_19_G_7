@@ -14,7 +14,7 @@
 
 char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset, uint64_t fileSize, uint64_t * curSize);
 
-char * getFileFragment(int fd, uint64_t offset, uint16_t size);
+char * getFileFragment(int fd, uint64_t offset, uint64_t size);
 
 uint32_t navigateDirExtentTree(int fd, char *filename, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset);
 
@@ -146,7 +146,8 @@ char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struc
             for(int j = 0; j < leaf.ee_len; j++) {
 
                 //Get file fragment
-                char * fragment = getFileFragment(fd, dataOffset + (j * blockSize), fileSize - *curSize);
+                uint64_t size = fileSize - *curSize <= blockSize ? fileSize - *curSize : blockSize;
+                char * fragment = getFileFragment(fd, dataOffset + (j * blockSize), size);
                 if(fragment != NULL) {
 
                     //Append data
@@ -213,7 +214,7 @@ char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struc
 
 }
 
-char * getFileFragment(int fd, uint64_t offset, uint16_t size) {
+char * getFileFragment(int fd, uint64_t offset, uint64_t size) {
 
     //Check size
     if(size == 0) {
