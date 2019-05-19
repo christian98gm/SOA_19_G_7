@@ -142,7 +142,7 @@ int searchFile(unsigned long cluster, int showFile) {
 
                 parse_dir_entry(entries_cluster[num_entry_directory_in_cluster], &offset, 0, &entry);
                 if((ATTR_DIRECTORY & entry.attributes) != 0 && entry.filename[0] != '.') { //DIRECTORY AND NOW SELF-BACK REFERENCE
-                    if(searchFile(entry.first_cluster, 0)){
+                    if(searchFile(entry.first_cluster, showFile)){
                        free(entry.filename);
                        return 1;
                     }
@@ -159,10 +159,10 @@ int searchFile(unsigned long cluster, int showFile) {
                     if(strcmp((char *) filAux, (char *) entry.filename) == 0) {
 
                         if(showFile == 0) {
-                            struct FileMetaData fileMetaData;
-                            //fileMetaData.size = (uint64_t) entry.size_in_bytes;
-                            //DATE_getShortDate((uint32_t) entry.date_created, fileMetaData.createdAt);
-                            //VIEW_fileFound(fileMetaData);
+                       /*     struct FileMetaData fileMetaData;
+                            fileMetaData.size = (uint64_t) entry.size_in_bytes;
+                            DATE_getShortDate((uint32_t) entry.date_created, fileMetaData.createdAt);
+                            VIEW_fileFound(fileMetaData);*/
                             VIEW_showFat32FileMetadata(&entry, 1);
                         } else {
                             VIEW_showFileInfo(getFileInfo(entry));

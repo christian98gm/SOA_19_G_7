@@ -26,7 +26,7 @@ int main(int argc, char * argv[]) {
 	}
     
     //CLION dir redirect
-    chdir("/Users/jordana/Desktop/SOA_19_G_7");
+    chdir("/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7");
 
 	//Get volume full path
 	char file[MAX_PATH];

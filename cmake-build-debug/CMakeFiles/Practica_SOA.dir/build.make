@@ -43,10 +43,10 @@ RM = "/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/jordana/Desktop/SOA_19_G_7
+CMAKE_SOURCE_DIR = /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Practica_SOA.dir/depend.make
@@ -59,94 +59,94 @@ include CMakeFiles/Practica_SOA.dir/flags.make
 
 CMakeFiles/Practica_SOA.dir/src/main.c.o: CMakeFiles/Practica_SOA.dir/flags.make
 CMakeFiles/Practica_SOA.dir/src/main.c.o: ../src/main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Practica_SOA.dir/src/main.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/main.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Practica_SOA.dir/src/main.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/main.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/main.c
 
 CMakeFiles/Practica_SOA.dir/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Practica_SOA.dir/src/main.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/SOA_19_G_7/src/main.c > CMakeFiles/Practica_SOA.dir/src/main.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/main.c > CMakeFiles/Practica_SOA.dir/src/main.c.i
 
 CMakeFiles/Practica_SOA.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/main.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/SOA_19_G_7/src/main.c -o CMakeFiles/Practica_SOA.dir/src/main.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/main.c -o CMakeFiles/Practica_SOA.dir/src/main.c.s
 
 CMakeFiles/Practica_SOA.dir/src/argval.c.o: CMakeFiles/Practica_SOA.dir/flags.make
 CMakeFiles/Practica_SOA.dir/src/argval.c.o: ../src/argval.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Practica_SOA.dir/src/argval.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/argval.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/src/argval.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Practica_SOA.dir/src/argval.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/argval.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/argval.c
 
 CMakeFiles/Practica_SOA.dir/src/argval.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Practica_SOA.dir/src/argval.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/SOA_19_G_7/src/argval.c > CMakeFiles/Practica_SOA.dir/src/argval.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/argval.c > CMakeFiles/Practica_SOA.dir/src/argval.c.i
 
 CMakeFiles/Practica_SOA.dir/src/argval.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/argval.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/SOA_19_G_7/src/argval.c -o CMakeFiles/Practica_SOA.dir/src/argval.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/argval.c -o CMakeFiles/Practica_SOA.dir/src/argval.c.s
 
 CMakeFiles/Practica_SOA.dir/src/fat32.c.o: CMakeFiles/Practica_SOA.dir/flags.make
 CMakeFiles/Practica_SOA.dir/src/fat32.c.o: ../src/fat32.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Practica_SOA.dir/src/fat32.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/fat32.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/src/fat32.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/Practica_SOA.dir/src/fat32.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/fat32.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32.c
 
 CMakeFiles/Practica_SOA.dir/src/fat32.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Practica_SOA.dir/src/fat32.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/SOA_19_G_7/src/fat32.c > CMakeFiles/Practica_SOA.dir/src/fat32.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32.c > CMakeFiles/Practica_SOA.dir/src/fat32.c.i
 
 CMakeFiles/Practica_SOA.dir/src/fat32.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/fat32.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/SOA_19_G_7/src/fat32.c -o CMakeFiles/Practica_SOA.dir/src/fat32.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32.c -o CMakeFiles/Practica_SOA.dir/src/fat32.c.s
 
 CMakeFiles/Practica_SOA.dir/src/ext4.c.o: CMakeFiles/Practica_SOA.dir/flags.make
 CMakeFiles/Practica_SOA.dir/src/ext4.c.o: ../src/ext4.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/Practica_SOA.dir/src/ext4.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/ext4.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/src/ext4.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/Practica_SOA.dir/src/ext4.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/ext4.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4.c
 
 CMakeFiles/Practica_SOA.dir/src/ext4.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Practica_SOA.dir/src/ext4.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/SOA_19_G_7/src/ext4.c > CMakeFiles/Practica_SOA.dir/src/ext4.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4.c > CMakeFiles/Practica_SOA.dir/src/ext4.c.i
 
 CMakeFiles/Practica_SOA.dir/src/ext4.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/ext4.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/SOA_19_G_7/src/ext4.c -o CMakeFiles/Practica_SOA.dir/src/ext4.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4.c -o CMakeFiles/Practica_SOA.dir/src/ext4.c.s
 
 CMakeFiles/Practica_SOA.dir/src/identifier.c.o: CMakeFiles/Practica_SOA.dir/flags.make
 CMakeFiles/Practica_SOA.dir/src/identifier.c.o: ../src/identifier.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/Practica_SOA.dir/src/identifier.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/identifier.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/src/identifier.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/Practica_SOA.dir/src/identifier.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/identifier.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/identifier.c
 
 CMakeFiles/Practica_SOA.dir/src/identifier.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Practica_SOA.dir/src/identifier.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/SOA_19_G_7/src/identifier.c > CMakeFiles/Practica_SOA.dir/src/identifier.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/identifier.c > CMakeFiles/Practica_SOA.dir/src/identifier.c.i
 
 CMakeFiles/Practica_SOA.dir/src/identifier.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/identifier.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/SOA_19_G_7/src/identifier.c -o CMakeFiles/Practica_SOA.dir/src/identifier.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/identifier.c -o CMakeFiles/Practica_SOA.dir/src/identifier.c.s
 
 CMakeFiles/Practica_SOA.dir/src/view.c.o: CMakeFiles/Practica_SOA.dir/flags.make
 CMakeFiles/Practica_SOA.dir/src/view.c.o: ../src/view.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/Practica_SOA.dir/src/view.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/view.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/src/view.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/Practica_SOA.dir/src/view.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/view.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.c
 
 CMakeFiles/Practica_SOA.dir/src/view.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Practica_SOA.dir/src/view.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/SOA_19_G_7/src/view.c > CMakeFiles/Practica_SOA.dir/src/view.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.c > CMakeFiles/Practica_SOA.dir/src/view.c.i
 
 CMakeFiles/Practica_SOA.dir/src/view.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/view.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/SOA_19_G_7/src/view.c -o CMakeFiles/Practica_SOA.dir/src/view.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.c -o CMakeFiles/Practica_SOA.dir/src/view.c.s
 
 CMakeFiles/Practica_SOA.dir/src/date.c.o: CMakeFiles/Practica_SOA.dir/flags.make
 CMakeFiles/Practica_SOA.dir/src/date.c.o: ../src/date.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/Practica_SOA.dir/src/date.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/date.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/src/date.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/Practica_SOA.dir/src/date.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Practica_SOA.dir/src/date.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.c
 
 CMakeFiles/Practica_SOA.dir/src/date.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Practica_SOA.dir/src/date.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/SOA_19_G_7/src/date.c > CMakeFiles/Practica_SOA.dir/src/date.c.i
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.c > CMakeFiles/Practica_SOA.dir/src/date.c.i
 
 CMakeFiles/Practica_SOA.dir/src/date.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Practica_SOA.dir/src/date.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/SOA_19_G_7/src/date.c -o CMakeFiles/Practica_SOA.dir/src/date.c.s
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.c -o CMakeFiles/Practica_SOA.dir/src/date.c.s
 
 # Object files for target Practica_SOA
 Practica_SOA_OBJECTS = \
@@ -170,7 +170,7 @@ Practica_SOA: CMakeFiles/Practica_SOA.dir/src/view.c.o
 Practica_SOA: CMakeFiles/Practica_SOA.dir/src/date.c.o
 Practica_SOA: CMakeFiles/Practica_SOA.dir/build.make
 Practica_SOA: CMakeFiles/Practica_SOA.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable Practica_SOA"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable Practica_SOA"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Practica_SOA.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -183,6 +183,6 @@ CMakeFiles/Practica_SOA.dir/clean:
 .PHONY : CMakeFiles/Practica_SOA.dir/clean
 
 CMakeFiles/Practica_SOA.dir/depend:
-	cd /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/jordana/Desktop/SOA_19_G_7 /Users/jordana/Desktop/SOA_19_G_7 /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/Practica_SOA.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7 /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7 /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/Practica_SOA.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Practica_SOA.dir/depend
 

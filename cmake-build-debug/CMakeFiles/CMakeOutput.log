@@ -10,35 +10,35 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is AppleClang, found in "/Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/3.13.4/CompilerIdC/a.out"
+The C compiler identification is AppleClang, found in "/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/3.13.4/CompilerIdC/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_89113/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_89113.dir/build.make CMakeFiles/cmTC_89113.dir/build
-Building C object CMakeFiles/cmTC_89113.dir/testCCompiler.c.o
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -o CMakeFiles/cmTC_89113.dir/testCCompiler.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_89113
-"/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_89113.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_89113.dir/testCCompiler.c.o  -o cmTC_89113 
+Run Build Command:"/usr/bin/make" "cmTC_7692f/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_7692f.dir/build.make CMakeFiles/cmTC_7692f.dir/build
+Building C object CMakeFiles/cmTC_7692f.dir/testCCompiler.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -o CMakeFiles/cmTC_7692f.dir/testCCompiler.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_7692f
+"/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_7692f.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_7692f.dir/testCCompiler.c.o  -o cmTC_7692f 
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_3ea04/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_3ea04.dir/build.make CMakeFiles/cmTC_3ea04.dir/build
-Building C object CMakeFiles/cmTC_3ea04.dir/CMakeCCompilerABI.c.o
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -o CMakeFiles/cmTC_3ea04.dir/CMakeCCompilerABI.c.o   -c "/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/share/cmake-3.13/Modules/CMakeCCompilerABI.c"
-Linking C executable cmTC_3ea04
-"/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_3ea04.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_3ea04.dir/CMakeCCompilerABI.c.o  -o cmTC_3ea04 
+Run Build Command:"/usr/bin/make" "cmTC_92641/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_92641.dir/build.make CMakeFiles/cmTC_92641.dir/build
+Building C object CMakeFiles/cmTC_92641.dir/CMakeCCompilerABI.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -o CMakeFiles/cmTC_92641.dir/CMakeCCompilerABI.c.o   -c "/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/share/cmake-3.13/Modules/CMakeCCompilerABI.c"
+Linking C executable cmTC_92641
+"/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_92641.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_92641.dir/CMakeCCompilerABI.c.o  -o cmTC_92641 
 Apple LLVM version 10.0.1 (clang-1001.0.46.3)
 Target: x86_64-apple-darwin18.0.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
- "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.14.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -o cmTC_3ea04 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_3ea04.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/lib/darwin/libclang_rt.osx.a
+ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.14.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -o cmTC_92641 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_92641.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/lib/darwin/libclang_rt.osx.a
 @(#)PROGRAM:ld  PROJECT:ld64-450.3
 BUILD 18:01:43 Mar 13 2019
 configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
@@ -50,20 +50,20 @@ Framework search paths:
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_3ea04/fast"]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_3ea04.dir/build.make CMakeFiles/cmTC_3ea04.dir/build]
-  ignore line: [Building C object CMakeFiles/cmTC_3ea04.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -o CMakeFiles/cmTC_3ea04.dir/CMakeCCompilerABI.c.o   -c "/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/share/cmake-3.13/Modules/CMakeCCompilerABI.c"]
-  ignore line: [Linking C executable cmTC_3ea04]
-  ignore line: ["/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_3ea04.dir/link.txt --verbose=1]
-  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_3ea04.dir/CMakeCCompilerABI.c.o  -o cmTC_3ea04 ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_92641/fast"]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_92641.dir/build.make CMakeFiles/cmTC_92641.dir/build]
+  ignore line: [Building C object CMakeFiles/cmTC_92641.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -o CMakeFiles/cmTC_92641.dir/CMakeCCompilerABI.c.o   -c "/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/share/cmake-3.13/Modules/CMakeCCompilerABI.c"]
+  ignore line: [Linking C executable cmTC_92641]
+  ignore line: ["/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_92641.dir/link.txt --verbose=1]
+  ignore line: [/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_92641.dir/CMakeCCompilerABI.c.o  -o cmTC_92641 ]
   ignore line: [Apple LLVM version 10.0.1 (clang-1001.0.46.3)]
   ignore line: [Target: x86_64-apple-darwin18.0.0]
   ignore line: [Thread model: posix]
   ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
-  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.14.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -o cmTC_3ea04 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_3ea04.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/lib/darwin/libclang_rt.osx.a]
+  link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.14.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -o cmTC_92641 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_92641.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/lib/darwin/libclang_rt.osx.a]
     arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
     arg [-demangle] ==> ignore
     arg [-lto_library] ==> ignore, skip following value
@@ -76,11 +76,11 @@ Parsed C implicit link information from above output:
     arg [-syslibroot] ==> ignore
     arg [/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_3ea04] ==> ignore
+    arg [cmTC_92641] ==> ignore
     arg [-search_paths_first] ==> ignore
     arg [-headerpad_max_install_names] ==> ignore
     arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_3ea04.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_92641.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lSystem] ==> lib [System]
     arg [/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/lib/darwin/libclang_rt.osx.a]
   Library search paths: [;/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/lib]
@@ -97,15 +97,15 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b5644/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_b5644.dir/build.make CMakeFiles/cmTC_b5644.dir/build
-Building C object CMakeFiles/cmTC_b5644.dir/feature_tests.c.o
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -std=c11 -o CMakeFiles/cmTC_b5644.dir/feature_tests.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_b5644
-"/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_b5644.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_b5644.dir/feature_tests.c.o  -o cmTC_b5644 
+Run Build Command:"/usr/bin/make" "cmTC_777ae/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_777ae.dir/build.make CMakeFiles/cmTC_777ae.dir/build
+Building C object CMakeFiles/cmTC_777ae.dir/feature_tests.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -std=c11 -o CMakeFiles/cmTC_777ae.dir/feature_tests.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_777ae
+"/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_777ae.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_777ae.dir/feature_tests.c.o  -o cmTC_777ae 
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -115,15 +115,15 @@ Linking C executable cmTC_b5644
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_0b362/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_0b362.dir/build.make CMakeFiles/cmTC_0b362.dir/build
-Building C object CMakeFiles/cmTC_0b362.dir/feature_tests.c.o
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -std=c99 -o CMakeFiles/cmTC_0b362.dir/feature_tests.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_0b362
-"/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_0b362.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_0b362.dir/feature_tests.c.o  -o cmTC_0b362 
+Run Build Command:"/usr/bin/make" "cmTC_44f9e/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_44f9e.dir/build.make CMakeFiles/cmTC_44f9e.dir/build
+Building C object CMakeFiles/cmTC_44f9e.dir/feature_tests.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -std=c99 -o CMakeFiles/cmTC_44f9e.dir/feature_tests.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_44f9e
+"/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_44f9e.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_44f9e.dir/feature_tests.c.o  -o cmTC_44f9e 
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -133,15 +133,15 @@ Linking C executable cmTC_0b362
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_203c8/fast"
-/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_203c8.dir/build.make CMakeFiles/cmTC_203c8.dir/build
-Building C object CMakeFiles/cmTC_203c8.dir/feature_tests.c.o
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -std=c90 -o CMakeFiles/cmTC_203c8.dir/feature_tests.c.o   -c /Users/jordana/Desktop/SOA_19_G_7/cmake-build-debug/CMakeFiles/feature_tests.c
-Linking C executable cmTC_203c8
-"/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_203c8.dir/link.txt --verbose=1
-/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_203c8.dir/feature_tests.c.o  -o cmTC_203c8 
+Run Build Command:"/usr/bin/make" "cmTC_6fe44/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_6fe44.dir/build.make CMakeFiles/cmTC_6fe44.dir/build
+Building C object CMakeFiles/cmTC_6fe44.dir/feature_tests.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk   -std=c90 -o CMakeFiles/cmTC_6fe44.dir/feature_tests.c.o   -c /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_6fe44
+"/Users/jordana/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/191.6183.77/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E cmake_link_script CMakeFiles/cmTC_6fe44.dir/link.txt --verbose=1
+/Library/Developer/CommandLineTools/usr/bin/cc   -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_6fe44.dir/feature_tests.c.o  -o cmTC_6fe44 
 
 
     Feature record: C_FEATURE:1c_function_prototypes
