@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
 stdint.h
 -
 time.h
@@ -16,23 +16,11 @@ string.h
 stdio.h
 -
 
-<<<<<<< HEAD
 C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.c
 ext4.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.h
 
 C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.h
-=======
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4types.h
-stdint.h
--
-
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32.c
-fat32.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32.h
-
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32.h
->>>>>>> f9f92b95ce7b3dfe40b3248b3760db7b3000f15e
 unistd.h
 -
 stdio.h
@@ -46,7 +34,6 @@ stdint.h
 stdlib.h
 -
 types.h
-<<<<<<< HEAD
 C:/Users/christian/Desktop/SOA_19_G_7/src/types.h
 ext4types.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/ext4types.h
@@ -56,35 +43,26 @@ C:/Users/christian/Desktop/SOA_19_G_7/src/view.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/ext4types.h
 stdint.h
 -
-=======
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/types.h
-view.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.h
-fat32types.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32types.h
-date.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.h
->>>>>>> f9f92b95ce7b3dfe40b3248b3760db7b3000f15e
 
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32types.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/fat32types.h
 
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/types.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/types.h
 stdint.h
 -
 ext4types.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4types.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/ext4types.h
 date.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
 
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/view.h
 stdio.h
 -
 stdint.h
 -
 types.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/types.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/types.h
 ext4types.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4types.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/ext4types.h
 fat32types.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32types.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/fat32types.h
 

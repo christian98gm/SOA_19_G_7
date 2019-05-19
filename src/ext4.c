@@ -12,9 +12,11 @@
  * CORE FUNCTIONS HEADER
  **/
 
-char * getFileData(int fd, uint32_t fileInode, uint16_t inodeTableOffset, uint32_t blockSize, struct ext_super_block sb);
+char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset, uint64_t fileSize, uint64_t * curSize);
 
-uint32_t navigateExtentTree(int fd, char *filename, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset);
+char * getFileFragment(int fd, uint64_t offset, uint16_t size);
+
+uint32_t navigateDirExtentTree(int fd, char *filename, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset);
 
 uint32_t getFileInode(int fd, char *filename, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset);
 
@@ -64,7 +66,8 @@ void EXT4_showFileMetadata(int fd, char *filename) {
     uint16_t rootInodeOffset = (ROOT_INODE_INDEX - 1) * sb.s_inode_size;
 
     //Search file inode
-    uint32_t fileInode = navigateExtentTree(fd, filename, inodeTableOffset + rootInodeOffset + EXT_HEADER_OFFSET, blockSize, sb, inodeTableOffset);
+    uint32_t fileInode = navigateDirExtentTree(fd, filename, inodeTableOffset + rootInodeOffset + EXT_HEADER_OFFSET,
+                                               blockSize, sb, inodeTableOffset);
     if(fileInode != 0) {
         VIEW_fileFound(getInodeMetaData(getInodeFromTable(fd, inodeTableOffset, fileInode, sb.s_inode_size)));
     } else {
@@ -89,15 +92,22 @@ void EXT4_showFileInfo(int fd, char * filename) {
     uint16_t rootInodeOffset = (ROOT_INODE_INDEX - 1) * sb.s_inode_size;
 
     //Search file inode
-    uint32_t fileInode = navigateExtentTree(fd, filename, inodeTableOffset + rootInodeOffset + EXT_HEADER_OFFSET, blockSize, sb, inodeTableOffset);
+    uint32_t fileInode = navigateDirExtentTree(fd, filename, inodeTableOffset + rootInodeOffset + EXT_HEADER_OFFSET,
+                                               blockSize, sb, inodeTableOffset);
     if(fileInode != 0) {
 
+        //Get file size
+        struct ext4_inode inode = getInodeFromTable(fd, inodeTableOffset, fileInode, sb.s_inode_size);
+        uint64_t fileSize = (uint64_t) inode.i_size_high << 32 | inode.i_size_lo;
+
         //Get file data
-        char * data = getFileData(fd, fileInode, inodeTableOffset, blockSize, sb);
+        uint64_t curSize = 0;
+        char * data = navigateFileExtentTree(fd, inodeTableOffset + (fileInode - 1) * sb.s_inode_size + EXT_HEADER_OFFSET, blockSize, sb, inodeTableOffset, fileSize, &curSize);
         if(data == NULL) {
             printf("Error!\n");
         } else {
             printf("Data found:\n-----\n%s\n-----\n", data);
+            free(data);
         }
 
     } else {
@@ -110,24 +120,19 @@ void EXT4_showFileInfo(int fd, char * filename) {
  * CORE FUNCTIONS IMPLEMENTATION
  **/
 
-char * getFileData(int fd, uint32_t fileInode, uint16_t inodeTableOffset, uint32_t blockSize, struct ext_super_block sb) {
-
-    char * data = NULL;
-
-    return data;
-
-}
-
-uint32_t navigateExtentTree(int fd, char *filename, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset) {
+char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset, uint64_t fileSize, uint64_t * curSize) {
 
     //Get header
     struct ext4_extent_header header;
     lseek(fd, offset, SEEK_SET);
     read(fd, &header, sizeof(struct ext4_extent_header));
 
-    //Get file inode
-    uint32_t fileInode;
+    //Check
+    char * data = NULL;
     if(header.eh_depth == 0) {
+
+        //Get leaves data
+        *curSize = 0;
         for(int i = 0; i < header.eh_entries; i++) {
 
             //Get leaf
@@ -135,14 +140,36 @@ uint32_t navigateExtentTree(int fd, char *filename, uint64_t offset, uint16_t bl
             lseek(fd, offset + (i + 1) * EXT_NODE_OFFSET, SEEK_SET);
             read(fd, &leaf, sizeof(struct ext4_extent));
 
-            //Go to data offset
+            //Get data offset
             uint64_t dataOffset = (uint64_t) leaf.ee_start_hi << 32 | leaf.ee_start_lo;
             dataOffset *= blockSize;
 
-            //Get file inode
-            fileInode = getFileInode(fd, filename, dataOffset, blockSize, sb, tableOffset);
-            if(fileInode != 0) {
-                return fileInode;
+            //Search file data
+            for(int j = 0; j < leaf.ee_len; j++) {
+
+                //Get file fragment
+                char * fragment = getFileFragment(fd, dataOffset + (j * blockSize), fileSize - *curSize);
+                if(fragment != NULL) {
+
+                    //Append data
+                    char * newData = (char *) realloc(data, *curSize + strlen(fragment) + 1);
+                    if(newData == NULL) {
+                        free(data);
+                        return NULL;
+                    } else {
+                        data = newData;
+                        if(*curSize == 0) {
+                            data[0] = '\0';
+                        }
+                        strcat(data, fragment);
+                        (*curSize) += strlen(fragment);
+                        newData[*curSize + 1] = '\0';
+                    }
+
+                } else {
+                    //End of data
+                    break;
+                }
             }
 
         }
@@ -159,7 +186,100 @@ uint32_t navigateExtentTree(int fd, char *filename, uint64_t offset, uint16_t bl
             nodeOffset *= blockSize;
 
             //Find file
-            fileInode = navigateExtentTree(fd, filename, nodeOffset, blockSize, sb, tableOffset);
+            uint64_t newSize = 0;
+            char * fragment = navigateFileExtentTree(fd, nodeOffset, blockSize, sb, tableOffset, fileSize, &newSize);
+            if(fragment != NULL) {
+
+                //Append data
+                char * newData = (char *) realloc(data, *curSize + newSize + 1);
+                if(newData == NULL) {
+                    free(data);
+                    return NULL;
+                } else {
+                    data = newData;
+                    strcat(data, fragment);
+                    (*curSize) += strlen(fragment);
+                    newData[*curSize + 1] = '\0';
+                }
+
+            } else {
+                //End of data
+                break;
+            }
+
+        }
+    }
+
+    //No entries
+    return data;
+
+}
+
+char * getFileFragment(int fd, uint64_t offset, uint16_t size) {
+
+    //Check size
+    if(size == 0) {
+        return NULL;
+    }
+
+    //Get data
+    char * data = (char *) malloc(size + 1);
+    if(data != NULL) {
+        lseek(fd, offset, SEEK_SET);
+        read(fd, data, size);
+        data[size] = '\0';
+        return data;
+    } else {
+        return NULL;
+    }
+
+}
+
+uint32_t navigateDirExtentTree(int fd, char *filename, uint64_t offset, uint16_t blockSize, struct ext_super_block sb,
+                               uint64_t tableOffset) {
+
+    //Get header
+    struct ext4_extent_header header;
+    lseek(fd, offset, SEEK_SET);
+    read(fd, &header, sizeof(struct ext4_extent_header));
+
+    //Get file inode
+    uint32_t fileInode;
+    if(header.eh_depth == 0) {
+        for(int i = 0; i < header.eh_entries; i++) {
+
+            //Get leaf
+            struct ext4_extent leaf;
+            lseek(fd, offset + (i + 1) * EXT_NODE_OFFSET, SEEK_SET);
+            read(fd, &leaf, sizeof(struct ext4_extent));
+
+            //Get data offset
+            uint64_t dataOffset = (uint64_t) leaf.ee_start_hi << 32 | leaf.ee_start_lo;
+            dataOffset *= blockSize;
+
+            //Search file inode
+            for(int j = 0; j < leaf.ee_len; j++) {
+                fileInode = getFileInode(fd, filename, dataOffset + (j * blockSize), blockSize, sb, tableOffset);
+                if(fileInode != 0) {
+                    return fileInode;
+                }
+            }
+
+        }
+    } else {
+        for(int i = 0; i < header.eh_entries; i++) {
+
+            //Get extent node
+            struct ext4_extent_idx node;
+            lseek(fd, offset + (i + 1) * EXT_NODE_OFFSET, SEEK_SET);
+            read(fd, &node, sizeof(struct ext4_extent_idx));
+
+            //Get next extent offset
+            uint64_t nodeOffset = (uint64_t) node.ei_leaf_hi << 32 | node.ei_leaf_lo;
+            nodeOffset *= blockSize;
+
+            //Find file
+            fileInode = navigateDirExtentTree(fd, filename, nodeOffset, blockSize, sb, tableOffset);
             if(fileInode != 0) {
                 return fileInode;
             }
@@ -207,7 +327,9 @@ uint32_t getFileInode(int fd, char *filename, uint64_t offset, uint16_t blockSiz
                 break;
             case __DIR_ENTRY:
                 if(strcmp(dirEntry.name, ".") != 0 && strcmp(dirEntry.name, "..") != 0) {
-                    uint32_t fileInode = navigateExtentTree(fd, filename, tableOffset + (dirEntry.inode - 1) * sb.s_inode_size + EXT_HEADER_OFFSET, blockSize, sb, tableOffset);
+                    uint32_t fileInode = navigateDirExtentTree(fd, filename,
+                                                               tableOffset + (dirEntry.inode - 1) * sb.s_inode_size +
+                                                               EXT_HEADER_OFFSET, blockSize, sb, tableOffset);
                     if(fileInode != 0) {
                         return fileInode;
                     }
