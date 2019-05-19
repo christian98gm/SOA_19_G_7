@@ -146,7 +146,8 @@ char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struc
             for(int j = 0; j < leaf.ee_len; j++) {
 
                 //Get file fragment
-                char * fragment = getFileFragment(fd, dataOffset + (j * blockSize), fileSize - *curSize);
+                uint64_t size = fileSize - *curSize <= blockSize ? fileSize - *curSize : blockSize;
+                char * fragment = getFileFragment(fd, dataOffset + (j * blockSize), size);
                 if(fragment != NULL) {
 
                     //Append data
