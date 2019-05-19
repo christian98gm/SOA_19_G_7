@@ -33,11 +33,10 @@
 
 //File search messages
 #define FILE_NOT_FOUND "Error. File not found.\n"
-#define FILE_FOUND_METADATA "File found! Size: %d bytes. Created on: %hu/%hu/%hu\n"
 #define FILE_FOUND_METADATA_2 "File found! Size: %ld bytes. Created on: %s\n"
 
 //File data messages
-#define FILE_FOUND_CONTENT "\nFile found! Showing content…\n\n"
+#define FILE_FOUND_CONTENT "\nFile found! Showing content...\n"
 #define START_FILE "\n---------------------START_FILE----------------------\n"
 #define END_FILE "\n---------------------END_FILE----------------------\n"
 
@@ -61,6 +60,6 @@ void VIEW_fileFound(struct FileMetaData metaData);
 
 void VIEW_fileNotFound();
 
-void VIEW_showFileInfo(char *info);
+void VIEW_showFileInfo(char * info);
 
 #endif //PRACTICA_SOA_VIEW_H

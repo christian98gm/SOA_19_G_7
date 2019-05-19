@@ -103,10 +103,8 @@ void EXT4_showFileInfo(int fd, char * filename) {
         //Get file data
         uint64_t curSize = 0;
         char * data = navigateFileExtentTree(fd, inodeTableOffset + (fileInode - 1) * sb.s_inode_size + EXT_HEADER_OFFSET, blockSize, sb, inodeTableOffset, fileSize, &curSize);
-        if(data == NULL) {
-            printf("Error!\n");
-        } else {
-            printf("Data found:\n-----\n%s\n-----\n", data);
+        VIEW_showFileInfo(data);
+        if(data != NULL) {
             free(data);
         }
 

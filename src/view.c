@@ -45,7 +45,7 @@ void VIEW_fileNotFound() {
     printf(FILE_NOT_FOUND);
 }
 
-void VIEW_showFileInfo(char *info){
+void VIEW_showFileInfo(char * info){
     printf(FILE_FOUND_CONTENT);
     if(info == NULL) return;
     printf(START_FILE);
