@@ -70,6 +70,7 @@ void FAT32_showFileMetadata(int fd_Aux, char * filenameAux) {
     }
 }
 
+//TODO: FIX
 void FAT32_showFileInfo(int fd_Aux, char * filenameAux){
     setBasicInfo(fd_Aux, filenameAux);
     if(searchFile(fat_boot_ext_32.root_cluster, 1) == 0) {
@@ -160,10 +161,9 @@ int searchFile(unsigned long cluster, int showFile) {
 
                         if(showFile == 0) {
                             struct FileMetaData fileMetaData;
-                            //fileMetaData.size = (uint64_t) entry.size_in_bytes;
-                            //DATE_getShortDate((uint32_t) entry.date_created, fileMetaData.createdAt);
-                            //VIEW_fileFound(fileMetaData);
-                            VIEW_showFat32FileMetadata(&entry, 1);
+                            fileMetaData.size = (uint64_t) entry.size_in_bytes;
+                            DATE_getShortDateFromBytes(entry.date_created, fileMetaData.createdAt);
+                            VIEW_fileFound(fileMetaData);
                         } else {
                             VIEW_showFileInfo(getFileInfo(entry));
                         }

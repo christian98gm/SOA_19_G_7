@@ -12,6 +12,8 @@
  * CORE FUNCTIONS HEADER
  **/
 
+char * getFileData(int fd, uint32_t fileInode, uint16_t inodeTableOffset, uint32_t blockSize, struct ext_super_block sb);
+
 uint32_t navigateExtentTree(int fd, char *filename, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset);
 
 uint32_t getFileInode(int fd, char *filename, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset);
@@ -71,13 +73,50 @@ void EXT4_showFileMetadata(int fd, char *filename) {
 
 }
 
-/*void EXT4_showFileInfo(int fd, char *filename) {
-    //TODO: F4
-}*/
+void EXT4_showFileInfo(int fd, char * filename) {
+
+    //Get super block
+    struct ext_super_block sb = getSuperBlock(fd);
+
+    //Get block size
+    uint32_t blockSize = (uint32_t) pow(2, 10 + sb.s_log_block_size);
+
+    //Get block group descriptor
+    struct ext4_group_desc groupDesc = getGroupDescriptor(fd, sb, blockSize);
+
+    //Get inode table offset and root inode offset
+    uint64_t inodeTableOffset = getInodeTableOffset(sb, groupDesc, blockSize);
+    uint16_t rootInodeOffset = (ROOT_INODE_INDEX - 1) * sb.s_inode_size;
+
+    //Search file inode
+    uint32_t fileInode = navigateExtentTree(fd, filename, inodeTableOffset + rootInodeOffset + EXT_HEADER_OFFSET, blockSize, sb, inodeTableOffset);
+    if(fileInode != 0) {
+
+        //Get file data
+        char * data = getFileData(fd, fileInode, inodeTableOffset, blockSize, sb);
+        if(data == NULL) {
+            printf("Error!\n");
+        } else {
+            printf("Data found:\n-----\n%s\n-----\n", data);
+        }
+
+    } else {
+        VIEW_fileNotFound();
+    }
+
+}
 
 /**
  * CORE FUNCTIONS IMPLEMENTATION
  **/
+
+char * getFileData(int fd, uint32_t fileInode, uint16_t inodeTableOffset, uint32_t blockSize, struct ext_super_block sb) {
+
+    char * data = NULL;
+
+    return data;
+
+}
 
 uint32_t navigateExtentTree(int fd, char *filename, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset) {
 

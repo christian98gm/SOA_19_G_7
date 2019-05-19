@@ -15,6 +15,10 @@ void DATE_getShortDate(uint32_t secs, char * msg) {
 
 }
 
+void DATE_getShortDateFromBytes(uint16_t bytes, char * date) {
+    sprintf(date, "%.2hu/%.2hu/%.4hu", bytes & 31, (bytes >> 5) & 5, 1980 + (bytes >> 9));
+}
+
 void DATE_getLongDate(uint32_t secs, char * date) {
 
     //Get time

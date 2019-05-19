@@ -63,7 +63,4 @@ void VIEW_fileNotFound();
 
 void VIEW_showFileInfo(char *info);
 
-//TODO: DELETE
-void VIEW_showFat32FileMetadata(struct dir_entry * entry, int status);
-
 #endif //PRACTICA_SOA_VIEW_H

@@ -18,6 +18,8 @@
 
 void DATE_getShortDate(uint32_t secs, char * date);
 
+void DATE_getShortDateFromBytes(uint16_t bytes, char * date);
+
 void DATE_getLongDate(uint32_t secs, char * date);
 
 #endif //PRACTICA_SOA_DATE_H

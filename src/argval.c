@@ -26,7 +26,7 @@ int ARGVAL_validate(int argc, char * argv[]) {
 			}
 			
 		default:
-			VIEW_wrongFormat();
+		    VIEW_wrongFormat();
 			return NO_OP_CODE;
 			
 	}

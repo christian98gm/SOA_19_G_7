@@ -5,18 +5,19 @@ CDIR = src
 ODIR = obj
 IDIR = include
 
-CFLAGS = -lm -Wall -Wextra -I $(IDIR)
+LIBS = -lm
+CFLAGS = -Wall -Wextra -I $(IDIR)
 
 SRC = $(wildcard $(CDIR)/*.c)
 OBJ = $(patsubst $(CDIR)/%.c, $(ODIR)/%.o, $(SRC))
 DEPS = $(wildcard $(IDIR)/*.h)
 
-$(ODIR)/%.o: $(SRC) $(DEPS)
-	$(CC) -c $< -o $@ $(CFLAGS)
+$(ODIR)/%.o: $(CDIR)/%.c
+	$(CC) -c $< -o $@ $(CFLAGS) $(LIBS)
 
 $(P): $(OBJ)
-	$(CC) $^ -o $(P)
-	
+	$(CC) -o $@ $^ $(LIBS)
+
 all: $(P)
 
 .PHONY: clean

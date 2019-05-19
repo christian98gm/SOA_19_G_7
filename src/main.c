@@ -68,7 +68,7 @@ int main(int argc, char * argv[]) {
 		    if(type == FAT32_FS) {
                 FAT32_showFileInfo(fd, argv[3]);
             } else {
-                //EXT4_showFileInfo(fd, argv[3]);
+                EXT4_showFileInfo(fd, argv[3]);
 		    }
 			break;
 	}

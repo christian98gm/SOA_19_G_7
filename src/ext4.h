@@ -20,6 +20,6 @@ void EXT4_showFileSystemInfo(int fd);
 
 void EXT4_showFileMetadata(int fd, char *filename);
 
-//void EXT4_showFileInfo(int fd, char *filename);
+void EXT4_showFileInfo(int fd, char * filename);
 
 #endif //PRACTICA_SOA_EXT4_H

@@ -52,10 +52,3 @@ void VIEW_showFileInfo(char *info){
     printf("%s", info);
     printf(END_FILE);
 }
-
-//TODO: DELETE
-void VIEW_showFat32FileMetadata(struct dir_entry *entry, int status){
-    if(status == 0) printf(FILE_NOT_FOUND);
-    if(status == 1)  printf(FILE_FOUND_METADATA, entry->size_in_bytes,(unsigned short)(entry->date_created & 31),
-                            (unsigned short)((entry->date_created >> 5) & 5),(unsigned short)(1980+((entry->date_created >> 9) & 127)));
-}
