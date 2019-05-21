@@ -104,7 +104,6 @@ void EXT4_showFileInfo(int fd, char * filename) {
         uint64_t curSize = 0;
         char * data = navigateFileExtentTree(fd, inodeTableOffset + (fileInode - 1) * sb.s_inode_size + EXT_HEADER_OFFSET, blockSize, sb, inodeTableOffset, fileSize, &curSize);
         VIEW_showFileInfo(data, curSize);
-        printf("Expected size: %ld\nObtained size: %ld\n", (long) fileSize, (long) curSize);
         if(data != NULL) {
             free(data);
         }
@@ -160,7 +159,7 @@ char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struc
                         return NULL;
                     } else {
                         data = newData;
-                        for(int k = 0; k < size; k++) {
+                        for(uint64_t k = 0; k < size; k++) {
                             data[*curSize + k] = fragment[k];
                         }
                         (*curSize) += size;
@@ -199,7 +198,7 @@ char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struc
                     return NULL;
                 } else {
                     data = newData;
-                    for(int j = 0; j < newSize; j++) {
+                    for(uint64_t j = 0; j < newSize; j++) {
                         data[*curSize + j] = fragment[j];
                     }
                     (*curSize) += newSize;
