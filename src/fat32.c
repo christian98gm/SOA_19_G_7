@@ -29,7 +29,7 @@ unsigned int int_little_to_big_endian(unsigned char * to_convert);
 
 int searchFile(unsigned long cluster, int showFile);
 
-char * getFileInfo(struct dir_entry entry);
+char * getFileInfo(struct dir_entry entry, uint64_t * size);
 
 /**
  * FILE NAME PARSE HEADERS
@@ -165,7 +165,9 @@ int searchFile(unsigned long cluster, int showFile) {
                             DATE_getShortDateFromBytes(entry.date_created, fileMetaData.createdAt);
                             VIEW_fileFound(fileMetaData);
                         } else {
-                            VIEW_showFileInfo(getFileInfo(entry));
+                            uint64_t size = 0;
+                            char * data = getFileInfo(entry, &size);
+                            VIEW_showFileInfo(data, size);
                         }
 
                         free(entry.filename);
@@ -208,8 +210,9 @@ int searchFile(unsigned long cluster, int showFile) {
 
 }
 
-char * getFileInfo(struct dir_entry entry) {
+char * getFileInfo(struct dir_entry entry, uint64_t * size) {
 
+    *size = 0;
     if(entry.first_cluster == 0) {
         return NULL;
     }
@@ -218,7 +221,8 @@ char * getFileInfo(struct dir_entry entry) {
     int num_clusters = entry.size_in_bytes / size_cluster;
     int offset_last = entry.size_in_bytes % size_cluster;
 
-    char * file_info = malloc(sizeof(char) * entry.size_in_bytes + sizeof(char));
+    char * file_info = malloc(sizeof(char) * entry.size_in_bytes);
+    (*size) = entry.size_in_bytes;
     unsigned long whereToGo;
     unsigned int cluster = entry.first_cluster;
     unsigned long first_sector;
@@ -236,7 +240,6 @@ char * getFileInfo(struct dir_entry entry) {
     }
 
     read(fd, &file_info[i * size_cluster], offset_last);
-    file_info[i * size_cluster + offset_last] = '\0';
     return file_info;
 
 }

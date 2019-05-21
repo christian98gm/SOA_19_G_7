@@ -16,33 +16,35 @@ string.h
 stdio.h
 -
 
-C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.c
-ext4.h
-C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/ext4types.h
+stdint.h
+-
 
-C:/Users/christian/Desktop/SOA_19_G_7/src/ext4.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/fat32.c
+fat32.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/fat32.h
+
+C:/Users/christian/Desktop/SOA_19_G_7/src/fat32.h
 unistd.h
 -
 stdio.h
 -
-math.h
--
-string.h
--
-stdint.h
+sys/param.h
 -
 stdlib.h
 -
-types.h
-C:/Users/christian/Desktop/SOA_19_G_7/src/types.h
-ext4types.h
-C:/Users/christian/Desktop/SOA_19_G_7/src/ext4types.h
-view.h
-C:/Users/christian/Desktop/SOA_19_G_7/src/view.h
-
-C:/Users/christian/Desktop/SOA_19_G_7/src/ext4types.h
+ctype.h
+-
 stdint.h
 -
+types.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/types.h
+view.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/view.h
+fat32types.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/fat32types.h
+date.h
+C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
 
 C:/Users/christian/Desktop/SOA_19_G_7/src/fat32types.h
 
@@ -55,6 +57,8 @@ date.h
 C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
 
 C:/Users/christian/Desktop/SOA_19_G_7/src/view.h
+unistd.h
+-
 stdio.h
 -
 stdint.h
