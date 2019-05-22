@@ -38,7 +38,7 @@ void VIEW_showFat32MetaData(struct fat_BS fat_boot, struct fat_extBS_32 fat_boot
 }
 
 void VIEW_fileFound(struct FileMetaData metaData) {
-    printf(FILE_FOUND_METADATA_2, (long) metaData.size, metaData.createdAt);
+    printf(FILE_FOUND_METADATA, (long) metaData.size, metaData.createdAt);
 }
 
 void VIEW_fileNotFound() {

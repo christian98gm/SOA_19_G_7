@@ -38,7 +38,7 @@ void VIEW_showFat32MetaData(struct fat_BS fat_boot, struct fat_extBS_32 fat_boot
 }
 
 void VIEW_fileFound(struct FileMetaData metaData) {
-    printf(FILE_FOUND_METADATA_2, (long) metaData.size, metaData.createdAt);
+    printf(FILE_FOUND_METADATA, metaData.size, metaData.createdAt);
 }
 
 void VIEW_fileNotFound() {
@@ -51,5 +51,18 @@ void VIEW_showFileInfo(char * info, uint64_t size){
     printf(START_FILE);
     write(1, info, size);
     printf("\n");
+    printf(END_FILE);
+}
+
+void VIEW_startOfFile() {
+    printf(FILE_FOUND_CONTENT);
+    printf(START_FILE);
+}
+
+void VIEW_showFileFragment(char * info, uint64_t size) {
+    write(1, info, size);
+}
+
+void VIEW_endOfFile() {
     printf(END_FILE);
 }

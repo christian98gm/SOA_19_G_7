@@ -24,8 +24,8 @@
 
 //Filesystem metadata messages
 #define FILESYSTEM_INFO "---- Filesystem Information ----\n\nFilesystem: %s\n\n"
-#define INODE_INFO "INODE INFO\nInode Size: %d\nNumber of Inodes: %d\nFirst Inode: %d\nInodes Group: %d\nFree Inodes: %d\n\n"
-#define BLOCK_INFO "BLOCK INFO\nBlock Size: %d\nReserved Blocks: %ld\nFree Blocks: %ld\nTotal Blocks: %ld\nFirst Block: %d\nBlock Group: %d\nFrags Group: %d\n\n"
+#define INODE_INFO "INODE INFO\nInode Size: %hu\nNumber of Inodes: %u\nFirst Inode: %u\nInodes Group: %u\nFree Inodes: %u\n\n"
+#define BLOCK_INFO "BLOCK INFO\nBlock Size: %u\nReserved Blocks: %llu\nFree Blocks: %llu\nTotal Blocks: %llu\nFirst Block: %u\nBlock Group: %u\nFrags Group: %u\n\n"
 #define VOLUME_INFO "VOLUME INFO\nVolume name: %s\n"
 #define FAT_INFO "System Name: %s\nSector Size: %u\nSectors per Cluster: %u\nReserved Sectors: %u\nNumber of FATs: %u\nMaximum Root Entries: %u\nSectors per FAT: %u\nLabel: %s\n\n"
 #define LAST_CHECK "Last check: %s"
@@ -34,7 +34,7 @@
 
 //File search messages
 #define FILE_NOT_FOUND "Error. File not found.\n"
-#define FILE_FOUND_METADATA_2 "File found! Size: %ld bytes. Created on: %s\n"
+#define FILE_FOUND_METADATA "File found! Size: %llu bytes. Created on: %s\n"
 
 //File data messages
 #define FILE_FOUND_CONTENT "\nFile found! Showing content...\n"
@@ -62,5 +62,11 @@ void VIEW_fileFound(struct FileMetaData metaData);
 void VIEW_fileNotFound();
 
 void VIEW_showFileInfo(char * info, uint64_t size);
+
+void VIEW_startOfFile();
+
+void VIEW_showFileFragment(char * info, uint64_t size);
+
+void VIEW_endOfFile();
 
 #endif //PRACTICA_SOA_VIEW_H

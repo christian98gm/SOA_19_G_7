@@ -12,9 +12,9 @@
  * CORE FUNCTIONS HEADER
  **/
 
-char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset, uint64_t fileSize, uint64_t * curSize);
+void navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset, uint64_t fileSize, uint64_t * curSize);
 
-char * getFileFragment(int fd, uint64_t offset, uint64_t size);
+int getFileFragment(int fd, uint64_t offset, uint64_t size);
 
 uint32_t navigateDirExtentTree(int fd, char *filename, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset);
 
@@ -102,11 +102,9 @@ void EXT4_showFileInfo(int fd, char * filename) {
 
         //Get file data
         uint64_t curSize = 0;
-        char * data = navigateFileExtentTree(fd, inodeTableOffset + (fileInode - 1) * sb.s_inode_size + EXT_HEADER_OFFSET, blockSize, sb, inodeTableOffset, fileSize, &curSize);
-        VIEW_showFileInfo(data, curSize);
-        if(data != NULL) {
-            free(data);
-        }
+        VIEW_startOfFile();
+        navigateFileExtentTree(fd, inodeTableOffset + (fileInode - 1) * sb.s_inode_size + EXT_HEADER_OFFSET, blockSize, sb, inodeTableOffset, fileSize, &curSize);
+        VIEW_endOfFile();
 
     } else {
         VIEW_fileNotFound();
@@ -118,15 +116,14 @@ void EXT4_showFileInfo(int fd, char * filename) {
  * CORE FUNCTIONS IMPLEMENTATION
  **/
 
-char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset, uint64_t fileSize, uint64_t * curSize) {
+void navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struct ext_super_block sb, uint64_t tableOffset, uint64_t fileSize, uint64_t * curSize) {
 
     //Get header
     struct ext4_extent_header header;
     lseek(fd, offset, SEEK_SET);
     read(fd, &header, sizeof(struct ext4_extent_header));
 
-    //Check
-    char * data = NULL;
+    //Check depth
     if(header.eh_depth == 0) {
 
         //Get leaves data
@@ -147,30 +144,12 @@ char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struc
 
                 //Get file fragment
                 uint64_t size = fileSize - *curSize <= blockSize ? fileSize - *curSize : blockSize;
-                char * fragment = getFileFragment(fd, dataOffset + (j * blockSize), size);
-                if(fragment != NULL) {
-
-                    //Append data
-                    char * newData = (char *) realloc(data, *curSize + size);
-                    if(newData == NULL) {
-                        if(*curSize > 0) {
-                            free(data);
-                        }
-                        return NULL;
-                    } else {
-                        data = newData;
-                        for(uint64_t k = 0; k < size; k++) {
-                            data[*curSize + k] = fragment[k];
-                        }
-                        (*curSize) += size;
-                    }
-
-                    free(fragment);
-
+                if(getFileFragment(fd, dataOffset + (j * blockSize), size) > 0) {
+                    (*curSize) += size;
                 } else {
-                    //End of data
                     break;
                 }
+
             }
 
         }
@@ -188,42 +167,19 @@ char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struc
 
             //Find file
             uint64_t newSize = 0;
-            char * fragment = navigateFileExtentTree(fd, nodeOffset, blockSize, sb, tableOffset, fileSize, &newSize);
-            if(fragment != NULL) {
-
-                //Append data
-                char * newData = (char *) realloc(data, *curSize + newSize);
-                if(newData == NULL) {
-                    free(data);
-                    return NULL;
-                } else {
-                    data = newData;
-                    for(uint64_t j = 0; j < newSize; j++) {
-                        data[*curSize + j] = fragment[j];
-                    }
-                    (*curSize) += newSize;
-                }
-
-                free(fragment);
-
-            } else {
-                //End of data
-                break;
-            }
+            navigateFileExtentTree(fd, nodeOffset, blockSize, sb, tableOffset, fileSize, &newSize);
+            (*curSize) += newSize;
 
         }
     }
 
-    //No entries
-    return data;
-
 }
 
-char * getFileFragment(int fd, uint64_t offset, uint64_t size) {
+int getFileFragment(int fd, uint64_t offset, uint64_t size) {
 
     //Check size
     if(size == 0) {
-        return NULL;
+        return -1;
     }
 
     //Get data
@@ -231,9 +187,11 @@ char * getFileFragment(int fd, uint64_t offset, uint64_t size) {
     if(data != NULL) {
         lseek(fd, offset, SEEK_SET);
         read(fd, data, size);
-        return data;
+        VIEW_showFileFragment(data, size);
+        free(data);
+        return 1;
     } else {
-        return NULL;
+        return -1;
     }
 
 }
