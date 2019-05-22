@@ -68,6 +68,8 @@ typedef struct dir_entry{
     unsigned long size_in_bytes;
     unsigned short date_created;
     unsigned short isLongSpecialFilename;
+    unsigned short pos[100];
+    unsigned short total_pos;
 } __attribute__((packed)) dir_entry_aux;
 
 #endif //PRACTICA_SOA_FAT32TYPES_H

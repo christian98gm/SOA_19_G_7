@@ -40,9 +40,10 @@ unsigned char * getFileInfo(struct dir_entry entry);
 
 char * formatShortFilename(char * filename);
 
-unsigned char * formatLongFilename(unsigned char * val, int length);
 
-void parse_dir_entry(unsigned char * data,unsigned long * offset, int longname, struct dir_entry * entry);
+unsigned char * formatLongFilename(struct dir_entry* entry, int length);
+
+void parse_dir_entry(unsigned char * data,unsigned long * offset, int longname, struct dir_entry * entry, int pos);
 
 /**
  * FUNCTIONS
@@ -129,6 +130,7 @@ int searchFile(unsigned int cluster, int showFile) {
     unsigned char first_byte;
     unsigned long num_entry_directory_in_cluster = 0;
     unsigned long offset = 0;
+    unsigned long  whereToGo;
 
     while(1) {
 
@@ -141,10 +143,10 @@ int searchFile(unsigned int cluster, int showFile) {
 
             unsigned char attr_long =  entries_cluster[num_entry_directory_in_cluster][0x0B];
             if(attr_long  == ATTR_LONG_NAME) {
-                parse_dir_entry(entries_cluster[num_entry_directory_in_cluster], &offset, 1, &entry);
+                parse_dir_entry(entries_cluster[num_entry_directory_in_cluster], &offset, 1, &entry, entries_cluster[num_entry_directory_in_cluster][0]);
             } else {//SHORT NAME
 
-                parse_dir_entry(entries_cluster[num_entry_directory_in_cluster], &offset, 0, &entry);
+                parse_dir_entry(entries_cluster[num_entry_directory_in_cluster], &offset, 0, &entry,0);
                 if((ATTR_DIRECTORY & entry.attributes) != 0 && entry.filename[0] != '.') { //DIRECTORY AND NOW SELF-BACK REFERENCE
                     if(searchFile(entry.first_cluster, showFile)){
                         free(entry.filename);
@@ -156,7 +158,7 @@ int searchFile(unsigned int cluster, int showFile) {
                     if(entry.isLongSpecialFilename == 0){
                         filAux = filename_SHORT;
                     } else {
-                        entry.filename = formatLongFilename(entry.filename, offset);
+                        entry.filename = formatLongFilename(&entry, offset);
                         filAux = filename_LONG;
                     }
 
@@ -172,13 +174,15 @@ int searchFile(unsigned int cluster, int showFile) {
 
                         }
 
-                        free(entry.filename);
+
                         return 1;
 
                     }
 
-                }
 
+                }
+                free(entry.filename);
+                entry.total_pos = 0;
                 offset = 0;
 
             }
@@ -187,27 +191,21 @@ int searchFile(unsigned int cluster, int showFile) {
 
         num_entry_directory_in_cluster++;
         if(num_entry_directory_in_cluster == max_entries_per_cluster) {
+            whereToGo = fat_boot.number_reserved_sectors * fat_boot.bytes_per_sector + (cluster*4);
+            lseek(fd, whereToGo,SEEK_SET);
+            read(fd,&cluster, sizeof(cluster));
 
-            unsigned long  whereToGo = (fat_boot.number_reserved_sectors * fat_boot.bytes_per_sector + cluster * 4);
-            lseek(fd, whereToGo, SEEK_SET);
-            unsigned int next_cluster;
-            read(fd, &next_cluster, sizeof(next_cluster));
-
-            if(next_cluster >= 0xFFFFFF8) {
-                return 0;
+            if(cluster >= 0x0FFFFFF8 || cluster == 0x0FFFFFF7) {
+                break;
             }
 
-            cluster = next_cluster;
-            first_sector = (((cluster & 0x0FFFFFFF)-2) * fat_boot.sectors_per_cluster) + first_data_sector;
-            lseek(fd, first_sector * fat_boot.bytes_per_sector, SEEK_SET);
+            first_sector = (((cluster & 0x0FFFFFFF) -2) * fat_boot.sectors_per_cluster) + first_data_sector;
+            lseek(fd, first_sector * fat_boot.bytes_per_sector,SEEK_SET);
             read(fd, entries_cluster, sizeof(entries_cluster));
             num_entry_directory_in_cluster = 0;
 
         }
-
     }
-
-    free(entry.filename);
     return 0;
 
 }
@@ -238,7 +236,7 @@ unsigned char * getFileInfo(struct dir_entry entry) {
         first_sector = (((cluster & 0x0FFFFFFF) -2) * fat_boot.sectors_per_cluster) + first_data_sector;
         lseek(fd, first_sector * fat_boot.bytes_per_sector,SEEK_SET);
     }
-    read(fd,file_info,sizeof(unsigned char)*offset_last);
+    read(fd,file_info,offset_last);
     VIEW_showFileFragment(file_info,offset_last);
     VIEW_showEndFile();
     return file_info;
@@ -279,25 +277,41 @@ char * formatShortFilename(char *filename){
 
 }
 
-unsigned char * formatLongFilename(unsigned char * val, int length) {
-
-    int j = 0;
-    unsigned char* aux = malloc(1);
+unsigned char * formatLongFilename(struct dir_entry* entry, int length) {
+    unsigned char* aux;
+    unsigned char* filen = malloc(length + 2);
+    int min = 99999;
+    int pos_min = 0;
+    for(int i = 0; i < entry->total_pos; i++){
+        for(int j = 0; j < entry->total_pos; j++){
+            if(min > entry->pos[j]){
+                min = entry->pos[j];
+                pos_min = j;
+            }
+        }
+        memcpy(&filen[26*i], &(entry->filename[pos_min*26]), 26);
+        entry->pos[pos_min] = 9999;
+        min = 9999;
+        pos_min = 0;
+    }
+    unsigned char* ptr = malloc(length);
+   int j = 0;
     for(int i = 0; i < length; i++) {
-        if(val[i] != '\0' && val[i] != 255) {
-            aux = realloc(aux, j + 3);
-            aux[j] = val[i];
+        if(filen[i] != '\0' && filen[i] != 255) {
+            ptr = realloc( ptr, j + 3);
+            ptr[j] = filen[i];
             j++;
         }
     }
 
-    aux[j] = '\0';
-    free(val);
-    return aux;
+    ptr[j] = '\0';
+    free(filen);
+    free(entry->filename);
+    return ptr;
 
 }
 
-void parse_dir_entry(unsigned char * data,unsigned long * offset, int longname, struct dir_entry * entry){
+void parse_dir_entry(unsigned char * data,unsigned long * offset, int longname, struct dir_entry * entry, int pos){
 
     if(longname == 0) {
 
@@ -318,12 +332,19 @@ void parse_dir_entry(unsigned char * data,unsigned long * offset, int longname, 
         entry->size_in_bytes = int_little_to_big_endian(&data[0x1C]);
 
     } else {
-        entry->filename = (unsigned char *) realloc(entry->filename, *offset * sizeof(char) + sizeof(char) * FAT32_LONG_NAME_SEGMENT);
+        if(*offset == 0){
+            entry->filename = (unsigned char *) malloc(*offset * sizeof(char) + sizeof(char) * FAT32_LONG_NAME_SEGMENT);
+        }else{
+            entry->filename = (unsigned char *) realloc(entry->filename, *offset * sizeof(char) + sizeof(char) * FAT32_LONG_NAME_SEGMENT);
+        }
+
         memcpy(&entry->filename[*offset], &data[1], 10);
         memcpy(&entry->filename[*offset + 10], &data[14], 12);
         memcpy(&entry->filename[*offset + 22], &data[28], 4);
         entry->isLongSpecialFilename = 1;
         *offset += FAT32_LONG_NAME_SEGMENT;
+        entry->pos[entry->total_pos] = pos;
+        entry->total_pos = entry->total_pos +1;
     }
 
 }
