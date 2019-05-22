@@ -53,3 +53,15 @@ void VIEW_showFileInfo(char * info, uint64_t size){
     printf("\n");
     printf(END_FILE);
 }
+
+void VIEW_showStartFile(){
+    printf(FILE_FOUND_CONTENT);
+    printf(START_FILE);
+}
+void VIEW_showEndFile(){
+    printf(END_FILE);
+}
+void VIEW_showFileFragment(char * info, uint64_t size){
+    if(size == 0) return;
+    write(1, info, size);
+}

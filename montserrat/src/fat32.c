@@ -169,7 +169,7 @@ int searchFile(unsigned int cluster, int showFile) {
                         } else {
                             uint64_t size = 0;
                             unsigned char * data = getFileInfo(entry, &size);
-                            VIEW_showFileInfo(data, size);
+                            //VIEW_showFileInfo(data, size);
                         }
 
                         free(entry.filename);

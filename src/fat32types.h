@@ -71,3 +71,4 @@ typedef struct dir_entry{
 } __attribute__((packed)) dir_entry_aux;
 
 #endif //PRACTICA_SOA_FAT32TYPES_H
+

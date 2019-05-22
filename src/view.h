@@ -63,4 +63,8 @@ void VIEW_fileNotFound();
 
 void VIEW_showFileInfo(char * info, uint64_t size);
 
+void VIEW_showStartFile();
+void VIEW_showEndFile();
+void VIEW_showFileFragment(char * info, uint64_t size);
+
 #endif //PRACTICA_SOA_VIEW_H
