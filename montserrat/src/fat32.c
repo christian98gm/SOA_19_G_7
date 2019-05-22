@@ -27,7 +27,7 @@ unsigned int int_little_to_big_endian(unsigned char * to_convert);
  * FILE METADATA/INFO FUNCTION HEADERS
  **/
 
-int searchFile(unsigned long cluster, int showFile);
+int searchFile(unsigned int cluster, int showFile);
 
 
 unsigned char * getFileInfo(struct dir_entry entry, uint64_t * size);
@@ -117,7 +117,7 @@ unsigned short short_little_to_big_endian(unsigned char * to_convert) {
  * FILE METADATA/INFO FUNCTION IMPLEMENTATIONS
  **/
 
-int searchFile(unsigned long cluster, int showFile) {
+int searchFile(unsigned int cluster, int showFile) {
 
     unsigned long first_sector = ((cluster - 2) * fat_boot.sectors_per_cluster) + first_data_sector;
     unsigned char entries_cluster[max_entries_per_cluster][FAT32_ENTRY_SIZE];
