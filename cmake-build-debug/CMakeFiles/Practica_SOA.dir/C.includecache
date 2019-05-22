@@ -6,11 +6,7 @@
 
 #IncludeRegexTransform: 
 
-<<<<<<< HEAD
 /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.h
-=======
-C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
->>>>>>> f87256c68fc31535a64739ce999a2308e3947d07
 stdint.h
 -
 time.h
@@ -48,37 +44,39 @@ view.h
 stdint.h
 -
 
-<<<<<<< HEAD
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32.c
+fat32.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32.h
+
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32.h
+unistd.h
+-
+stdio.h
+-
+sys/param.h
+-
+stdlib.h
+-
+ctype.h
+-
+stdint.h
+-
+types.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/types.h
+view.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.h
+fat32types.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32types.h
+date.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.h
+
 /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32types.h
 
 /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/types.h
 =======
 C:/Users/christian/Desktop/SOA_19_G_7/src/fat32types.h
 
-C:/Users/christian/Desktop/SOA_19_G_7/src/types.h
->>>>>>> f87256c68fc31535a64739ce999a2308e3947d07
-stdint.h
--
-ext4types.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4types.h
-date.h
-<<<<<<< HEAD
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.h
-
 /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.h
 =======
 C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
-
-C:/Users/christian/Desktop/SOA_19_G_7/src/view.h
->>>>>>> f87256c68fc31535a64739ce999a2308e3947d07
-stdio.h
--
-stdint.h
--
-types.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/types.h
-ext4types.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4types.h
-fat32types.h
-/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32types.h
 

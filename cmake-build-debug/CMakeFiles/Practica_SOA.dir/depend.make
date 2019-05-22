@@ -12,16 +12,13 @@ CMakeFiles/Practica_SOA.dir/src/argval.c.o: ../src/view.h
 CMakeFiles/Practica_SOA.dir/src/date.c.o: ../src/date.c
 CMakeFiles/Practica_SOA.dir/src/date.c.o: ../src/date.h
 
-CMakeFiles/Practica_SOA.dir/src/ext4.c.o: ../src/date.h
 CMakeFiles/Practica_SOA.dir/src/ext4.c.o: ../src/ext4.c
 CMakeFiles/Practica_SOA.dir/src/ext4.c.o: ../src/ext4.h
 CMakeFiles/Practica_SOA.dir/src/ext4.c.o: ../src/ext4types.h
-CMakeFiles/Practica_SOA.dir/src/ext4.c.o: ../src/fat32types.h
 CMakeFiles/Practica_SOA.dir/src/ext4.c.o: ../src/types.h
 CMakeFiles/Practica_SOA.dir/src/ext4.c.o: ../src/view.h
 
 CMakeFiles/Practica_SOA.dir/src/fat32.c.o: ../src/date.h
-CMakeFiles/Practica_SOA.dir/src/fat32.c.o: ../src/ext4types.h
 CMakeFiles/Practica_SOA.dir/src/fat32.c.o: ../src/fat32.c
 CMakeFiles/Practica_SOA.dir/src/fat32.c.o: ../src/fat32.h
 CMakeFiles/Practica_SOA.dir/src/fat32.c.o: ../src/fat32types.h

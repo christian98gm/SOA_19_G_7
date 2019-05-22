@@ -29,7 +29,7 @@ unsigned int int_little_to_big_endian(unsigned char * to_convert);
 
 int searchFile(unsigned long cluster, int showFile);
 
-char * getFileInfo(struct dir_entry entry);
+unsigned char * getFileInfo(struct dir_entry entry);
 
 /**
  * FILE NAME PARSE HEADERS
@@ -208,26 +208,26 @@ int searchFile(unsigned long cluster, int showFile) {
 
 }
 
-char * getFileInfo(struct dir_entry entry) {
+unsigned char * getFileInfo(struct dir_entry entry) {
 
     if(entry.first_cluster == 0) {
         return NULL;
     }
 
     unsigned long size_cluster =  fat_boot.sectors_per_cluster * fat_boot.bytes_per_sector;
-    int num_clusters = entry.size_in_bytes / size_cluster;
-    int offset_last = entry.size_in_bytes % size_cluster;
+    unsigned long num_clusters = entry.size_in_bytes / size_cluster;
+    unsigned long offset_last = entry.size_in_bytes % size_cluster;
 
-    char * file_info = malloc(sizeof(char) * entry.size_in_bytes + sizeof(char));
+    unsigned char * file_info = malloc(sizeof(char) * entry.size_in_bytes + sizeof(char));
     unsigned long whereToGo;
-    unsigned int cluster = entry.first_cluster;
+    unsigned long cluster = entry.first_cluster;
     unsigned long first_sector;
 
     first_sector = (((cluster & 0x0FFFFFFF) - 2)* fat_boot.sectors_per_cluster) + first_data_sector;
     lseek(fd, first_sector * fat_boot.bytes_per_sector, SEEK_SET);
     int i;
     for(i = 0; i < num_clusters; i++) {
-        read(fd, &file_info[i * size_cluster], sizeof(char) * size_cluster);    //TODO: MAYBE NOT POINTER, BUT MULTI
+        read(fd, &file_info[i * size_cluster], sizeof(char) * size_cluster);
         whereToGo = fat_boot.number_reserved_sectors * fat_boot.bytes_per_sector + cluster * 4;
         lseek(fd, whereToGo, SEEK_SET);
         read(fd, &cluster, sizeof(cluster));
