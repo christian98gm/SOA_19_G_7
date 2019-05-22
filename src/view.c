@@ -49,8 +49,7 @@ void VIEW_showFileInfo(char * info, uint64_t size){
     printf(FILE_FOUND_CONTENT);
     if(size == 0) return;
     printf(START_FILE);
-    printf(info);
-    //write(1, info, size);
-  /*  printf("\n");
-    printf(END_FILE);*/
+    write(1, info, size);
+    printf("\n");
+    printf(END_FILE);
 }
