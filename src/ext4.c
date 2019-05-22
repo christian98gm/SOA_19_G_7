@@ -26,7 +26,7 @@ uint32_t getFileInode(int fd, char *filename, uint64_t offset, uint16_t blockSiz
 
 struct Ext4MetaData getSuperBlockMetaData(struct ext_super_block sb);
 
-struct FileMetaData getInodeMetaData(struct ext4_inode inode);
+struct FileMetaData getInodeMetaData(struct ext4_inode inode, uint16_t inodeSize);
 
 /**
  * AUX FUNCTIONS HEADER
@@ -69,7 +69,7 @@ void EXT4_showFileMetadata(int fd, char *filename) {
     uint32_t fileInode = navigateDirExtentTree(fd, filename, inodeTableOffset + rootInodeOffset + EXT_HEADER_OFFSET,
                                                blockSize, sb, inodeTableOffset);
     if(fileInode != 0) {
-        VIEW_fileFound(getInodeMetaData(getInodeFromTable(fd, inodeTableOffset, fileInode, sb.s_inode_size)));
+        VIEW_fileFound(getInodeMetaData(getInodeFromTable(fd, inodeTableOffset, fileInode, sb.s_inode_size), sb.s_inode_size));
     } else {
         VIEW_fileNotFound();
     }
@@ -388,10 +388,15 @@ struct Ext4MetaData getSuperBlockMetaData(struct ext_super_block sb) {
 
 }
 
-struct FileMetaData getInodeMetaData(struct ext4_inode inode) {
+struct FileMetaData getInodeMetaData(struct ext4_inode inode, uint16_t inodeSize) {
     struct FileMetaData fileMetaData;
     fileMetaData.size = (uint64_t) inode.i_size_high << 32 | inode.i_size_lo;
-    DATE_getShortDate(inode.i_crtime, fileMetaData.createdAt);
+    if(inodeSize > 128) {
+        DATE_getShortDate(inode.i_crtime, fileMetaData.createdAt);
+    } else {
+        fileMetaData.createdAt[0] = '-';
+        fileMetaData.createdAt[1] = '\0';
+    }
     return fileMetaData;
 }
 
