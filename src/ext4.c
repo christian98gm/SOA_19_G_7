@@ -102,9 +102,9 @@ void EXT4_showFileInfo(int fd, char * filename) {
 
         //Get file data
         uint64_t curSize = 0;
-        VIEW_startOfFile();
+        VIEW_showStartFile();
         navigateFileExtentTree(fd, inodeTableOffset + (fileInode - 1) * sb.s_inode_size + EXT_HEADER_OFFSET, blockSize, sb, inodeTableOffset, fileSize, &curSize);
-        VIEW_endOfFile();
+        VIEW_showEndFile();
 
     } else {
         VIEW_fileNotFound();
