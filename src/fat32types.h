@@ -65,7 +65,7 @@ typedef struct dir_entry{
     unsigned char *filename;
     unsigned char attributes;
     unsigned int first_cluster;
-    unsigned int size_in_bytes;
+    unsigned long size_in_bytes;
     unsigned short date_created;
     unsigned short isLongSpecialFilename;
 } __attribute__((packed)) dir_entry_aux;

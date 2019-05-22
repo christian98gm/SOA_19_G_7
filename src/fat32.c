@@ -29,7 +29,9 @@ unsigned int int_little_to_big_endian(unsigned char * to_convert);
 
 int searchFile(unsigned long cluster, int showFile);
 
-unsigned char * getFileInfo(struct dir_entry entry);
+
+unsigned char * getFileInfo(struct dir_entry entry, uint64_t * size);
+
 
 /**
  * FILE NAME PARSE HEADERS
@@ -39,7 +41,7 @@ char * formatShortFilename(char * filename);
 
 unsigned char * formatLongFilename(unsigned char * val, int length);
 
-void parse_dir_entry(unsigned char * data, int * offset, int longname, struct dir_entry * entry);
+void parse_dir_entry(unsigned char * data,unsigned long * offset, int longname, struct dir_entry * entry);
 
 /**
  * FUNCTIONS
@@ -124,8 +126,8 @@ int searchFile(unsigned long cluster, int showFile) {
 
     struct dir_entry entry;
     unsigned char first_byte;
-    int num_entry_directory_in_cluster = 0;
-    int offset = 0;
+    unsigned long num_entry_directory_in_cluster = 0;
+    unsigned long offset = 0;
 
     while(1) {
 
@@ -165,7 +167,9 @@ int searchFile(unsigned long cluster, int showFile) {
                             DATE_getShortDateFromBytes(entry.date_created, fileMetaData.createdAt);
                             VIEW_fileFound(fileMetaData);
                         } else {
-                            VIEW_showFileInfo(getFileInfo(entry));
+                            uint64_t size = 0;
+                            unsigned char * data = getFileInfo(entry, &size);
+                            VIEW_showFileInfo(data, size);
                         }
 
                         free(entry.filename);
@@ -208,35 +212,37 @@ int searchFile(unsigned long cluster, int showFile) {
 
 }
 
-unsigned char * getFileInfo(struct dir_entry entry) {
 
-    if(entry.first_cluster == 0) {
-        return NULL;
-    }
+unsigned char * getFileInfo(struct dir_entry entry, uint64_t * size) {
 
-    unsigned long size_cluster =  fat_boot.sectors_per_cluster * fat_boot.bytes_per_sector;
-    unsigned long num_clusters = entry.size_in_bytes / size_cluster;
+
+    if(entry.first_cluster == 0) return NULL;
+
+    *size = 0;
+    (*size) = entry.size_in_bytes;
+
+    unsigned long size_cluster =  fat_boot.sectors_per_cluster*fat_boot.bytes_per_sector;
+    unsigned long num_clusters = entry.size_in_bytes/size_cluster;
     unsigned long offset_last = entry.size_in_bytes % size_cluster;
 
-    unsigned char * file_info = malloc(sizeof(char) * entry.size_in_bytes + sizeof(char));
-    unsigned long whereToGo;
-    unsigned long cluster = entry.first_cluster;
+    unsigned char* file_info = malloc(sizeof(unsigned char)*entry.size_in_bytes + sizeof(unsigned char));
+    unsigned long  whereToGo;
+    unsigned int cluster =  entry.first_cluster &  0x0FFFFFFF ;
     unsigned long first_sector;
 
-    first_sector = (((cluster & 0x0FFFFFFF) - 2)* fat_boot.sectors_per_cluster) + first_data_sector;
-    lseek(fd, first_sector * fat_boot.bytes_per_sector, SEEK_SET);
-    int i;
-    for(i = 0; i < num_clusters; i++) {
-        read(fd, &file_info[i * size_cluster], sizeof(char) * size_cluster);
-        whereToGo = fat_boot.number_reserved_sectors * fat_boot.bytes_per_sector + cluster * 4;
-        lseek(fd, whereToGo, SEEK_SET);
-        read(fd, &cluster, sizeof(cluster));
-        first_sector = (((cluster & 0x0FFFFFFF) - 2) * fat_boot.sectors_per_cluster) + first_data_sector;
-        lseek(fd, first_sector * fat_boot.bytes_per_sector, SEEK_SET);
+    first_sector = (((cluster & 0x0FFFFFFF) -2)* fat_boot.sectors_per_cluster) + first_data_sector;
+    lseek(fd, first_sector * fat_boot.bytes_per_sector,SEEK_SET);
+    unsigned long i;
+    for(i = 0; i < num_clusters;i++){
+        read(fd,&file_info[i*size_cluster],sizeof(unsigned char)*size_cluster);
+        whereToGo = fat_boot.number_reserved_sectors * fat_boot.bytes_per_sector + (cluster*4);
+        lseek(fd, whereToGo,SEEK_SET);
+        read(fd,&cluster, sizeof(cluster));
+        first_sector = (((cluster & 0x0FFFFFFF) -2) * fat_boot.sectors_per_cluster) + first_data_sector;
+        lseek(fd, first_sector * fat_boot.bytes_per_sector,SEEK_SET);
     }
-
-    read(fd, &file_info[i * size_cluster], offset_last);
-    file_info[i * size_cluster + offset_last] = '\0';
+    read(fd,&file_info[i*size_cluster],offset_last);
+    file_info[i*size_cluster + offset_last] = '\0';
     return file_info;
 
 }
@@ -294,7 +300,7 @@ unsigned char * formatLongFilename(unsigned char * val, int length) {
 
 }
 
-void parse_dir_entry(unsigned char * data, int * offset, int longname, struct dir_entry * entry) {
+void parse_dir_entry(unsigned char * data,unsigned long * offset, int longname, struct dir_entry * entry){
 
     if(longname == 0) {
 

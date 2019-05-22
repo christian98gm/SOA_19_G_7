@@ -1,6 +1,7 @@
 #ifndef PRACTICA_SOA_VIEW_H
 #define PRACTICA_SOA_VIEW_H
 
+#include <unistd.h>
 #include <stdio.h>
 #include <stdint.h>
 
@@ -60,6 +61,6 @@ void VIEW_fileFound(struct FileMetaData metaData);
 
 void VIEW_fileNotFound();
 
-void VIEW_showFileInfo(char * info);
+void VIEW_showFileInfo(char * info, uint64_t size);
 
 #endif //PRACTICA_SOA_VIEW_H

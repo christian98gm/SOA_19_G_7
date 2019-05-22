@@ -45,10 +45,11 @@ void VIEW_fileNotFound() {
     printf(FILE_NOT_FOUND);
 }
 
-void VIEW_showFileInfo(char * info){
+void VIEW_showFileInfo(char * info, uint64_t size){
     printf(FILE_FOUND_CONTENT);
-    if(info == NULL) return;
+    if(size == 0) return;
     printf(START_FILE);
-    printf("%s", info);
+    write(1, info, size);
+    printf("\n");
     printf(END_FILE);
 }

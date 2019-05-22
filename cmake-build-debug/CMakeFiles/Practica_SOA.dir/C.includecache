@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/argval.c
+argval.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/argval.h
+
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/argval.h
+string.h
+-
+view.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.h
+
 /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.h
 stdint.h
 -
@@ -72,11 +82,61 @@ date.h
 
 /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32types.h
 
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/identifier.c
+identifier.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/identifier.h
+
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/identifier.h
+unistd.h
+-
+stdio.h
+-
+stdint.h
+-
+ext4types.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4types.h
+fat32types.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32types.h
+types.h
 /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/types.h
-=======
-C:/Users/christian/Desktop/SOA_19_G_7/src/fat32types.h
+
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/main.c
+fcntl.h
+-
+argval.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/argval.h
+identifier.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/identifier.h
+ext4.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4.h
+fat32.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32.h
+view.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.h
+
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/types.h
+stdint.h
+-
+ext4types.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4types.h
+date.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/date.h
+
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.c
+view.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.h
 
 /Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/view.h
-=======
-C:/Users/christian/Desktop/SOA_19_G_7/src/date.h
+unistd.h
+-
+stdio.h
+-
+stdint.h
+-
+types.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/types.h
+ext4types.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/ext4types.h
+fat32types.h
+/Users/jordana/Desktop/3r_Any_Carrera/Coses_En_Curs/SOA_19_G_7/src/fat32types.h
 

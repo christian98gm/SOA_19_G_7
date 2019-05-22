@@ -103,7 +103,7 @@ void EXT4_showFileInfo(int fd, char * filename) {
         //Get file data
         uint64_t curSize = 0;
         char * data = navigateFileExtentTree(fd, inodeTableOffset + (fileInode - 1) * sb.s_inode_size + EXT_HEADER_OFFSET, blockSize, sb, inodeTableOffset, fileSize, &curSize);
-        VIEW_showFileInfo(data);
+        VIEW_showFileInfo(data, curSize);
         if(data != NULL) {
             free(data);
         }
@@ -151,19 +151,21 @@ char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struc
                 if(fragment != NULL) {
 
                     //Append data
-                    char * newData = (char *) realloc(data, *curSize + strlen(fragment) + 1);
+                    char * newData = (char *) realloc(data, *curSize + size);
                     if(newData == NULL) {
-                        free(data);
+                        if(*curSize > 0) {
+                            free(data);
+                        }
                         return NULL;
                     } else {
                         data = newData;
-                        if(*curSize == 0) {
-                            data[0] = '\0';
+                        for(uint64_t k = 0; k < size; k++) {
+                            data[*curSize + k] = fragment[k];
                         }
-                        strcat(data, fragment);
-                        (*curSize) += strlen(fragment);
-                        newData[*curSize + 1] = '\0';
+                        (*curSize) += size;
                     }
+
+                    free(fragment);
 
                 } else {
                     //End of data
@@ -190,16 +192,19 @@ char * navigateFileExtentTree(int fd, uint64_t offset, uint16_t blockSize, struc
             if(fragment != NULL) {
 
                 //Append data
-                char * newData = (char *) realloc(data, *curSize + newSize + 1);
+                char * newData = (char *) realloc(data, *curSize + newSize);
                 if(newData == NULL) {
                     free(data);
                     return NULL;
                 } else {
                     data = newData;
-                    strcat(data, fragment);
-                    (*curSize) += strlen(fragment);
-                    newData[*curSize + 1] = '\0';
+                    for(uint64_t j = 0; j < newSize; j++) {
+                        data[*curSize + j] = fragment[j];
+                    }
+                    (*curSize) += newSize;
                 }
+
+                free(fragment);
 
             } else {
                 //End of data
@@ -222,11 +227,10 @@ char * getFileFragment(int fd, uint64_t offset, uint64_t size) {
     }
 
     //Get data
-    char * data = (char *) malloc(size + 1);
+    char * data = (char *) malloc(size);
     if(data != NULL) {
         lseek(fd, offset, SEEK_SET);
         read(fd, data, size);
-        data[size] = '\0';
         return data;
     } else {
         return NULL;
